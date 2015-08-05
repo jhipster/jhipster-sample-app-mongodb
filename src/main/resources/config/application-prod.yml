@@ -1,0 +1,35 @@
+server:
+    port: 8080
+
+liquibase:
+    context: prod
+
+spring:
+    profiles:
+        active: prod
+    data:
+        mongodb:
+            host: localhost
+            port: 27017
+            database: jhipster
+    thymeleaf:
+        mode: XHTML
+        cache: true
+
+metrics:
+    jmx.enabled: true
+    spark:
+        enabled: false
+        host: localhost
+        port: 9999
+    graphite:
+        enabled: false
+        host: localhost
+        port: 2003
+        prefix: jhipster
+
+http:
+    cache:
+        timeToLiveInDays: 31
+
+
