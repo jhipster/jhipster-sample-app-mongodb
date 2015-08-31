@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jhipsterApp')
+angular.module('samplemongdbApp')
     .controller('LogoutController', function (Auth) {
         Auth.logout();
     });

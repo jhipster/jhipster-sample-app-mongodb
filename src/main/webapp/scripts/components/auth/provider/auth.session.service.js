@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jhipsterApp')
+angular.module('samplemongdbApp')
     .factory('AuthServerProvider', function loginService($http, localStorageService, $window) {
         return {
             login: function(credentials) {

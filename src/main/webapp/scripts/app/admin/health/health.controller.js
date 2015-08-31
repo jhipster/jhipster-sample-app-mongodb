@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jhipsterApp')
+angular.module('samplemongdbApp')
     .controller('HealthController', function ($scope, MonitoringService, $modal) {
         $scope.updatingHealth = true;
         $scope.separator = '.';

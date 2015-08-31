@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jhipsterApp')
+angular.module('samplemongdbApp')
     .directive('hasAnyRole', ['Principal', function (Principal) {
         return {
             restrict: 'A',

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jhipsterApp')
+angular.module('samplemongdbApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('metrics', {

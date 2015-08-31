@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jhipsterApp')
+angular.module('samplemongdbApp')
     .service('DateUtils', function () {
       this.convertLocaleDateToServer = function(date) {
         if (date) {

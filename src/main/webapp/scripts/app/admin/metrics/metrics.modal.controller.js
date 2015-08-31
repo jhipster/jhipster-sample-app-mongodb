@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jhipsterApp')
+angular.module('samplemongdbApp')
     .controller('MetricsModalController', function($scope, $modalInstance, threadDump) {
 
         $scope.threadDump = threadDump;

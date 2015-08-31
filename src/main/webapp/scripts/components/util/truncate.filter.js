@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jhipsterApp')
+angular.module('samplemongdbApp')
     .filter('characters', function () {
         return function (input, chars, breakOnWord) {
             if (isNaN(chars)) {
