@@ -1,4 +1,4 @@
-# Developping sampleMongDB
+# Developing sampleMongDB
 
 sampleMongDB was generated using JHipster, you can find documentation and help at [JHipster][].
 
