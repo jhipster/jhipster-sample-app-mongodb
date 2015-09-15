@@ -6,7 +6,7 @@ import com.mycompany.myapp.domain.User;
 
 public class ManagedUserDTO extends UserDTO {
 
-    private Long id;
+    private String id;
 
     private DateTime createdDate;
 
@@ -25,11 +25,11 @@ public class ManagedUserDTO extends UserDTO {
         this.lastModifiedDate = user.getLastModifiedDate();
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
