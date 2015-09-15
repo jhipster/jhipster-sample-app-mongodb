@@ -3,6 +3,7 @@ package com.mycompany.myapp.web.rest;
 import com.mycompany.myapp.Application;
 import com.mycompany.myapp.config.MongoConfiguration;
 import com.mycompany.myapp.repository.UserRepository;
+import com.mycompany.myapp.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,12 +37,16 @@ public class UserResourceTest {
     @Inject
     private UserRepository userRepository;
 
+    @Inject
+    private UserService userService;
+
     private MockMvc restUserMockMvc;
 
     @Before
     public void setup() {
         UserResource userResource = new UserResource();
         ReflectionTestUtils.setField(userResource, "userRepository", userRepository);
+        ReflectionTestUtils.setField(userResource, "userService", userService);
         this.restUserMockMvc = MockMvcBuilders.standaloneSetup(userResource).build();
     }
 

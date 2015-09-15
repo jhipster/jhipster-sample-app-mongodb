@@ -129,10 +129,24 @@ public class UserService {
         });
     }
 
+    public Optional<User> getUserWithAuthoritiesByLogin(String login) {
+        return userRepository.findOneByLogin(login).map(u -> {
+            u.getAuthorities().size();
+            return u;
+        });
+    }
+
+
+    public User getUserWithAuthorities(String id) {
+        User user = userRepository.findOne(id);
+        user.getAuthorities().size(); // eagerly load the association
+        return user;
+    }
+
     public User getUserWithAuthorities() {
-        User currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get();
-        currentUser.getAuthorities().size(); // eagerly load the association
-        return currentUser;
+        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get();
+        user.getAuthorities().size(); // eagerly load the association
+        return user;
     }
 
     /**

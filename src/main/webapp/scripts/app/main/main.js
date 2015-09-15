@@ -7,7 +7,7 @@ angular.module('samplemongdbApp')
                 parent: 'site',
                 url: '/',
                 data: {
-                    roles: []
+                    authorities: []
                 },
                 views: {
                     'content@': {

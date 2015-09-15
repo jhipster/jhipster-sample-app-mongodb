@@ -30,4 +30,3 @@ metrics:
         port: 2003
         prefix: sampleMongDB
 
-

@@ -24,6 +24,11 @@ mail:
     from: sampleMongDB@localhost
 
 
+spring:
+    mvc:
+        favicon:
+            enabled: false
+
 swagger:
     title: sampleMongDB API
     description: sampleMongDB applications and beyond!

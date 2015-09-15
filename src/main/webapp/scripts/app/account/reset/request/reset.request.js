@@ -7,7 +7,7 @@ angular.module('samplemongdbApp')
                 parent: 'account',
                 url: '/reset/request',
                 data: {
-                    roles: []
+                    authorities: []
                 },
                 views: {
                     'content@': {

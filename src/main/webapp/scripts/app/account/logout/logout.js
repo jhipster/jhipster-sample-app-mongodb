@@ -7,7 +7,7 @@ angular.module('samplemongdbApp')
                 parent: 'account',
                 url: '/logout',
                 data: {
-                    roles: []
+                    authorities: []
                 },
                 views: {
                     'content@': {
