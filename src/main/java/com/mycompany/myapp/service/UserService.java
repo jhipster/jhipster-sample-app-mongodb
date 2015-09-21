@@ -136,7 +136,6 @@ public class UserService {
         });
     }
 
-
     public User getUserWithAuthorities(String id) {
         User user = userRepository.findOne(id);
         user.getAuthorities().size(); // eagerly load the association
