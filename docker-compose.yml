@@ -1,0 +1,8 @@
+jhipster-dev-mongodb:
+  container_name: sampleMongDB-dev-mongodb
+  image: mongo
+  # volumes:
+  # - ~/volumes/jhipster/sampleMongDB/dev-mongodb/:/data/db/
+  ports:
+  - "27017:27017"
+

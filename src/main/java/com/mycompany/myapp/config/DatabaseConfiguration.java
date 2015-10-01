@@ -1,6 +1,5 @@
 package com.mycompany.myapp.config;
 
-
 import com.mongodb.Mongo;
 import org.mongeez.Mongeez;
 import org.slf4j.Logger;

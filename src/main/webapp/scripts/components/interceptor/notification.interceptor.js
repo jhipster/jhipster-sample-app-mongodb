@@ -9,6 +9,6 @@ angular.module('samplemongdbApp')
                     AlertService.success(alertKey, { param : response.headers('X-samplemongdbApp-params')});
                 }
                 return response;
-            },
+            }
         };
     });
