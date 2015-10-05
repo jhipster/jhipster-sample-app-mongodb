@@ -12,11 +12,13 @@ import java.util.Objects;
 /**
  * A BankAccount.
  */
+
 @Document(collection = "BANK_ACCOUNT")
 public class BankAccount implements Serializable {
 
     @Id
     private String id;
+
 
     @NotNull        
     @Field("name")
