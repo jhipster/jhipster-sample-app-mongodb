@@ -30,6 +30,7 @@ public class CacheConfiguration {
     }
 
     @Bean
+    public CacheManager cacheManager() {
         log.debug("No cache");
         cacheManager = new NoOpCacheManager();
         return cacheManager;
