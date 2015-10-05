@@ -175,31 +175,12 @@ public class JHipsterProperties {
 
         private int timeToLiveSeconds = 3600;
 
-        private final Ehcache ehcache = new Ehcache();
-
         public int getTimeToLiveSeconds() {
             return timeToLiveSeconds;
         }
 
         public void setTimeToLiveSeconds(int timeToLiveSeconds) {
             this.timeToLiveSeconds = timeToLiveSeconds;
-        }
-
-        public Ehcache getEhcache() {
-            return ehcache;
-        }
-
-        public static class Ehcache {
-
-            private String maxBytesLocalHeap = "16M";
-
-            public String getMaxBytesLocalHeap() {
-                return maxBytesLocalHeap;
-            }
-
-            public void setMaxBytesLocalHeap(String maxBytesLocalHeap) {
-                this.maxBytesLocalHeap = maxBytesLocalHeap;
-            }
         }
     }
 
@@ -226,7 +207,7 @@ public class JHipsterProperties {
         }
 
         public void setHost(String host) {
-            this.host = host;
+                this.host = host;
         }
 
         public int getPort() {
