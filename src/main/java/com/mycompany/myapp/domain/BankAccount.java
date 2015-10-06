@@ -13,7 +13,7 @@ import java.util.Objects;
  * A BankAccount.
  */
 
-@Document(collection = "BANK_ACCOUNT")
+@Document(collection = "bank_account")
 public class BankAccount implements Serializable {
 
     @Id

@@ -24,7 +24,7 @@ import org.joda.time.DateTime;
 /**
  * A user.
  */
-@Document(collection = "JHI_USER")
+@Document(collection = "jhi_user")
 public class User extends AbstractAuditingEntity implements Serializable {
 
     @Id

@@ -12,7 +12,7 @@ import java.util.Map;
  * Persist AuditEvent managed by the Spring Boot actuator
  * @see org.springframework.boot.actuate.audit.AuditEvent
  */
-@Document(collection = "JHI_PERSISTENT_AUDIT_EVENT")
+@Document(collection = "jhi_persistent_audit_event")
 public class PersistentAuditEvent  {
 
     @Id

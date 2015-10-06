@@ -19,7 +19,7 @@ import java.io.Serializable;
  *
  * @see com.mycompany.myapp.security.CustomPersistentRememberMeServices
  */
-@Document(collection = "JHI_PERSISTENT_TOKEN")
+@Document(collection = "jhi_persistent_token")
 public class PersistentToken implements Serializable {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern("d MMMM yyyy");
