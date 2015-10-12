@@ -76,9 +76,9 @@ public class BankAccount implements Serializable {
     @Override
     public String toString() {
         return "BankAccount{" +
-                "id=" + id +
-                ", name='" + name + "'" +
-                ", balance='" + balance + "'" +
-                '}';
+            "id=" + id +
+            ", name='" + name + "'" +
+            ", balance='" + balance + "'" +
+            '}';
     }
 }

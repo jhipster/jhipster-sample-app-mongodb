@@ -23,7 +23,7 @@ import javax.inject.Inject;
 @EnableMongoRepositories("com.mycompany.myapp.repository")
 @Import(value = MongoAutoConfiguration.class)
 @EnableMongoAuditing(auditorAwareRef = "springSecurityAuditorAware")
-public class DatabaseConfiguration extends AbstractMongoConfiguration  {
+public class DatabaseConfiguration extends AbstractMongoConfiguration {
 
     private final Logger log = LoggerFactory.getLogger(DatabaseConfiguration.class);
 
