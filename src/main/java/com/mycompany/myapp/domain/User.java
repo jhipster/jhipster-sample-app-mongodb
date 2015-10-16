@@ -5,8 +5,6 @@ import org.hibernate.validator.constraints.Email;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.mycompany.myapp.domain.util.CustomDateTimeDeserializer;
-import com.mycompany.myapp.domain.util.CustomDateTimeSerializer;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,8 +16,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.joda.time.DateTime;
+import java.time.ZonedDateTime;
 
 /**
  * A user.
@@ -67,10 +64,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Field("reset_key")
     private String resetKey;
 
-    @JsonSerialize(using = CustomDateTimeSerializer.class)
-    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Field("reset_date")
-    private DateTime resetDate = null;
+    private ZonedDateTime resetDate = null;
 
     @JsonIgnore
     private Set<Authority> authorities = new HashSet<>();
@@ -147,12 +142,12 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.resetKey = resetKey;
     }
 
-    public DateTime getResetDate() {
-        return resetDate;
+    public ZonedDateTime getResetDate() {
+       return resetDate;
     }
 
-    public void setResetDate(DateTime resetDate) {
-        this.resetDate = resetDate;
+    public void setResetDate(ZonedDateTime resetDate) {
+       this.resetDate = resetDate;
     }
 
     public String getLangKey() {

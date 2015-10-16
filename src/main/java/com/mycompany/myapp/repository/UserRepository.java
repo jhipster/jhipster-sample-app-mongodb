@@ -2,7 +2,7 @@ package com.mycompany.myapp.repository;
 
 import com.mycompany.myapp.domain.User;
 
-import org.joda.time.DateTime;
+import java.time.ZonedDateTime;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     Optional<User> findOneByActivationKey(String activationKey);
 
-    List<User> findAllByActivatedIsFalseAndCreatedDateBefore(DateTime dateTime);
+    List<User> findAllByActivatedIsFalseAndCreatedDateBefore(ZonedDateTime dateTime);
 
     Optional<User> findOneByResetKey(String resetKey);
 

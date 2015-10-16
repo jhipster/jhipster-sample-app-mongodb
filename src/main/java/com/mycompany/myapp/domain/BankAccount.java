@@ -19,12 +19,11 @@ public class BankAccount implements Serializable {
     @Id
     private String id;
 
-
-    @NotNull        
+    @NotNull
     @Field("name")
     private String name;
 
-    @NotNull        
+    @NotNull
     @Field("balance")
     private BigDecimal balance;
 

@@ -2,7 +2,7 @@ package com.mycompany.myapp.repository;
 
 import com.mycompany.myapp.domain.PersistentAuditEvent;
 
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

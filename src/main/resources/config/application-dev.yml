@@ -41,8 +41,6 @@ server:
 # ===================================================================
 
 jhipster:
-    datasource: # JHipster-specific configuration, in addition to the standard spring.datasource properties
-        serverName: 
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: sampleMongDB@localhost
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

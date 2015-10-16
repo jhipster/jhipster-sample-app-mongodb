@@ -1,12 +1,12 @@
 package com.mycompany.myapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.joda.time.DateTime;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Field;
+import java.time.ZonedDateTime;
 
 import javax.validation.constraints.NotNull;
 
@@ -24,7 +24,7 @@ public abstract class AbstractAuditingEntity {
     @CreatedDate
     @Field("created_date")
     @JsonIgnore
-    private DateTime createdDate = DateTime.now();
+    private ZonedDateTime createdDate = ZonedDateTime.now();
 
     @LastModifiedBy
     @Field("last_modified_by")
@@ -34,7 +34,7 @@ public abstract class AbstractAuditingEntity {
     @LastModifiedDate
     @Field("last_modified_date  ")
     @JsonIgnore
-    private DateTime lastModifiedDate = DateTime.now();
+    private ZonedDateTime lastModifiedDate = ZonedDateTime.now();
 
     public String getCreatedBy() {
         return createdBy;
@@ -44,11 +44,11 @@ public abstract class AbstractAuditingEntity {
         this.createdBy = createdBy;
     }
 
-    public DateTime getCreatedDate() {
+    public ZonedDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(DateTime createdDate) {
+    public void setCreatedDate(ZonedDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -60,11 +60,11 @@ public abstract class AbstractAuditingEntity {
         this.lastModifiedBy = lastModifiedBy;
     }
 
-    public DateTime getLastModifiedDate() {
+    public ZonedDateTime getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(DateTime lastModifiedDate) {
+    public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 }

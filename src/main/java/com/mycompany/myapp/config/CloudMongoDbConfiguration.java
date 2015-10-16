@@ -1,6 +1,8 @@
 package com.mycompany.myapp.config;
 
 import com.mongodb.Mongo;
+import com.mycompany.myapp.domain.util.JSR310DateConverters.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -36,6 +38,18 @@ public class CloudMongoDbConfiguration extends AbstractMongoConfiguration  {
     @Bean
     public LocalValidatorFactoryBean validator() {
         return new LocalValidatorFactoryBean();
+    }
+
+    @Bean
+    public CustomConversions customConversions() {
+        List<Converter<?, ?>> converterList = new ArrayList<>();;
+        converterList.add(DateToZonedDateTimeConverter.INSTANCE);
+        converterList.add(ZonedDateTimeToDateConverter.INSTANCE);
+        converterList.add(DateToLocalDateConverter.INSTANCE);
+        converterList.add(LocalDateToDateConverter.INSTANCE);
+        converterList.add(DateToLocalDateTimeConverter.INSTANCE);
+        converterList.add(LocalDateTimeToDateConverter.INSTANCE);
+        return new CustomConversions(converterList);
     }
 
     @Override

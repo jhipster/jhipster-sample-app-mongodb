@@ -2,9 +2,8 @@ package com.mycompany.myapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -22,7 +21,10 @@ import java.io.Serializable;
 @Document(collection = "jhi_persistent_token")
 public class PersistentToken implements Serializable {
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern("d MMMM yyyy");
+    
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d MMMM yyyy");
+    
+    
 
     private static final int MAX_USER_AGENT_LEN = 255;
 
@@ -74,7 +76,7 @@ public class PersistentToken implements Serializable {
 
     @JsonGetter
     public String getFormattedTokenDate() {
-        return DATE_TIME_FORMATTER.print(this.tokenDate);
+        return DATE_TIME_FORMATTER.format(this.tokenDate);
     }
 
     public String getIpAddress() {
