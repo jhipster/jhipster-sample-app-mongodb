@@ -15,12 +15,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.convert.CustomConversions;
-import org.springframework.data.mongodb.core.convert.DbRefResolver;
-import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
-import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
-import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -75,7 +70,7 @@ public class DatabaseConfiguration extends AbstractMongoConfiguration {
         converters.add(LocalDateTimeToDateConverter.INSTANCE);
         return new CustomConversions(converters);
     }
-    
+
     @Bean
     @Profile("!" + Constants.SPRING_PROFILE_FAST)
     public Mongeez mongeez() {
