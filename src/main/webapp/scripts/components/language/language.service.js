@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplemongdbApp')
+angular.module('sampleMongDBApp')
     .factory('Language', function ($q, $http, $translate, LANGUAGES) {
         return {
             getCurrent: function () {

@@ -1,8 +1,8 @@
 /* globals $ */
 'use strict';
 
-angular.module('samplemongdbApp')
-    .directive('samplemongdbAppPagination', function() {
+angular.module('sampleMongDBApp')
+    .directive('sampleMongDBAppPagination', function() {
         return {
             templateUrl: 'scripts/components/form/pagination.html'
         };

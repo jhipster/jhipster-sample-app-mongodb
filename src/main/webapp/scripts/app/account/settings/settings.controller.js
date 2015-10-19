@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplemongdbApp')
+angular.module('sampleMongDBApp')
     .controller('SettingsController', function ($scope, Principal, Auth, Language, $translate) {
         $scope.success = null;
         $scope.error = null;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplemongdbApp')
+angular.module('sampleMongDBApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('docs', {

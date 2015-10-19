@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplemongdbApp').controller('BankAccountDialogController',
+angular.module('sampleMongDBApp').controller('BankAccountDialogController',
     ['$scope', '$stateParams', '$modalInstance', 'entity', 'BankAccount',
         function($scope, $stateParams, $modalInstance, entity, BankAccount) {
 
@@ -12,7 +12,7 @@ angular.module('samplemongdbApp').controller('BankAccountDialogController',
         };
 
         var onSaveFinished = function (result) {
-            $scope.$emit('samplemongdbApp:bankAccountUpdate', result);
+            $scope.$emit('sampleMongDBApp:bankAccountUpdate', result);
             $modalInstance.close(result);
         };
 

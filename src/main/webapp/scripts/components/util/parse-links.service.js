@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplemongdbApp')
+angular.module('sampleMongDBApp')
     .service('ParseLinks', function () {
         this.parse = function (header) {
             if (header.length == 0) {

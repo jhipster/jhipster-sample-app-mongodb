@@ -1,5 +1,5 @@
 {
-    "samplemongdbApp": {
+    "sampleMongDBApp": {
         "bankAccount" : {
             "home": {
                 "title": "BankAccounts",

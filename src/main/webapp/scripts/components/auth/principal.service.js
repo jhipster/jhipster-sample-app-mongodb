@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplemongdbApp')
+angular.module('sampleMongDBApp')
     .factory('Principal', function Principal($q, Account) {
         var _identity,
             _authenticated = false;

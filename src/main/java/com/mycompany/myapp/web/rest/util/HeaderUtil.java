@@ -10,20 +10,20 @@ public class HeaderUtil {
 
     public static HttpHeaders createAlert(String message, String param) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-samplemongdbApp-alert", message);
-        headers.add("X-samplemongdbApp-params", param);
+        headers.add("X-sampleMongDBApp-alert", message);
+        headers.add("X-sampleMongDBApp-params", param);
         return headers;
     }
 
     public static HttpHeaders createEntityCreationAlert(String entityName, String param) {
-        return createAlert("samplemongdbApp." + entityName + ".created", param);
+        return createAlert("sampleMongDBApp." + entityName + ".created", param);
     }
 
     public static HttpHeaders createEntityUpdateAlert(String entityName, String param) {
-        return createAlert("samplemongdbApp." + entityName + ".updated", param);
+        return createAlert("sampleMongDBApp." + entityName + ".updated", param);
     }
 
     public static HttpHeaders createEntityDeletionAlert(String entityName, String param) {
-        return createAlert("samplemongdbApp." + entityName + ".deleted", param);
+        return createAlert("sampleMongDBApp." + entityName + ".deleted", param);
     }
 }

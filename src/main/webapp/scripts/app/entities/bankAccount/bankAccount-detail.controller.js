@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplemongdbApp')
+angular.module('sampleMongDBApp')
     .controller('BankAccountDetailController', function ($scope, $rootScope, $stateParams, entity, BankAccount) {
         $scope.bankAccount = entity;
         $scope.load = function (id) {
@@ -8,7 +8,7 @@ angular.module('samplemongdbApp')
                 $scope.bankAccount = result;
             });
         };
-        var unsubscribe = $rootScope.$on('samplemongdbApp:bankAccountUpdate', function(event, result) {
+        var unsubscribe = $rootScope.$on('sampleMongDBApp:bankAccountUpdate', function(event, result) {
             $scope.bankAccount = result;
         });
         $scope.$on('$destroy', unsubscribe);

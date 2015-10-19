@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplemongdbApp')
+angular.module('sampleMongDBApp')
     .factory('Register', function ($resource) {
         return $resource('api/register', {}, {
         });
