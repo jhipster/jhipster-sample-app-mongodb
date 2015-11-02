@@ -10,17 +10,11 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-
-
-# ===================================================================
-# JHipster specific properties
-# ===================================================================
-
 spring:
     data:
         mongodb:
             host: localhost
-            port: 27017
+            port: 27117
             database: sampleMongDB
     mail:
         host: localhost
