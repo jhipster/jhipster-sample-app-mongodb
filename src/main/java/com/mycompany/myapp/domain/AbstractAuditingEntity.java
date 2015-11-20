@@ -1,5 +1,7 @@
 package com.mycompany.myapp.domain;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -14,7 +16,9 @@ import javax.validation.constraints.NotNull;
  * Base abstract class for entities which will hold definitions for created, last modified by and created,
  * last modified by date.
  */
-public abstract class AbstractAuditingEntity {
+public abstract class AbstractAuditingEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @CreatedBy
     @Field("created_by")
