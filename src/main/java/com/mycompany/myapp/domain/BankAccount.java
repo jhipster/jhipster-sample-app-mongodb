@@ -27,6 +27,7 @@ public class BankAccount implements Serializable {
     @Field("balance")
     private BigDecimal balance;
 
+    
     public String getId() {
         return id;
     }

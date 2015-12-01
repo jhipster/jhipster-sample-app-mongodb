@@ -137,7 +137,7 @@ public class BankAccountResourceIntTest {
         bankAccountRepository.save(bankAccount);
 
         // Get all the bankAccounts
-        restBankAccountMockMvc.perform(get("/api/bankAccounts"))
+        restBankAccountMockMvc.perform(get("/api/bankAccounts?sort=id,desc"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(bankAccount.getId())))

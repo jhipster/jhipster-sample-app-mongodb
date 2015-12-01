@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('sampleMongDBApp').controller('BankAccountDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'BankAccount',
-        function($scope, $stateParams, $modalInstance, entity, BankAccount) {
+    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'BankAccount',
+        function($scope, $stateParams, $uibModalInstance, entity, BankAccount) {
 
         $scope.bankAccount = entity;
         $scope.load = function(id) {
@@ -13,7 +13,7 @@ angular.module('sampleMongDBApp').controller('BankAccountDialogController',
 
         var onSaveSuccess = function (result) {
             $scope.$emit('sampleMongDBApp:bankAccountUpdate', result);
-            $modalInstance.close(result);
+            $uibModalInstance.close(result);
             $scope.isSaving = false;
         };
 
@@ -31,6 +31,6 @@ angular.module('sampleMongDBApp').controller('BankAccountDialogController',
         };
 
         $scope.clear = function() {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
 }]);
