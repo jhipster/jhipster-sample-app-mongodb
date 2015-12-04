@@ -26,4 +26,11 @@ public class HeaderUtil {
     public static HttpHeaders createEntityDeletionAlert(String entityName, String param) {
         return createAlert("sampleMongDBApp." + entityName + ".deleted", param);
     }
+
+    public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-sampleMongDBApp-error", "error." + errorKey);
+        headers.add("X-sampleMongDBApp-params", entityName);
+        return headers;
+    }
 }
