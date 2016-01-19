@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sampleMongDBApp')
+angular.module('samplemongdbApp')
     .provider('AlertService', function () {
         this.toast = false;
 

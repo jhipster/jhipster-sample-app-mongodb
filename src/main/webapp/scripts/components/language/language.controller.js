@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sampleMongDBApp')
+angular.module('samplemongdbApp')
     .controller('LanguageController', function ($scope, $translate, Language, tmhDynamicLocale) {
         $scope.changeLanguage = function (languageKey) {
             $translate.use(languageKey);

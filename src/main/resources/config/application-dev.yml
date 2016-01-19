@@ -20,8 +20,7 @@ spring:
             enabled: false # we use Grunt + BrowserSync for livereload
     data:
         mongodb:
-            host: localhost
-            port: 27017
+            uri: mongodb://localhost:27017
             database: sampleMongDB
     mail:
         host: localhost

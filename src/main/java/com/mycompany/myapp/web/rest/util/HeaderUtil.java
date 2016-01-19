@@ -10,27 +10,27 @@ public class HeaderUtil {
 
     public static HttpHeaders createAlert(String message, String param) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-sampleMongDBApp-alert", message);
-        headers.add("X-sampleMongDBApp-params", param);
+        headers.add("X-samplemongdbApp-alert", message);
+        headers.add("X-samplemongdbApp-params", param);
         return headers;
     }
 
     public static HttpHeaders createEntityCreationAlert(String entityName, String param) {
-        return createAlert("sampleMongDBApp." + entityName + ".created", param);
+        return createAlert("samplemongdbApp." + entityName + ".created", param);
     }
 
     public static HttpHeaders createEntityUpdateAlert(String entityName, String param) {
-        return createAlert("sampleMongDBApp." + entityName + ".updated", param);
+        return createAlert("samplemongdbApp." + entityName + ".updated", param);
     }
 
     public static HttpHeaders createEntityDeletionAlert(String entityName, String param) {
-        return createAlert("sampleMongDBApp." + entityName + ".deleted", param);
+        return createAlert("samplemongdbApp." + entityName + ".deleted", param);
     }
 
     public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-sampleMongDBApp-error", "error." + errorKey);
-        headers.add("X-sampleMongDBApp-params", entityName);
+        headers.add("X-samplemongdbApp-error", "error." + errorKey);
+        headers.add("X-samplemongdbApp-params", entityName);
         return headers;
     }
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sampleMongDBApp')
+angular.module('samplemongdbApp')
     .filter('capitalize', function () {
         return function (input, scope) {
             if (input != null)

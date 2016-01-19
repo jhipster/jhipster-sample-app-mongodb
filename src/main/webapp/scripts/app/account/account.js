@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sampleMongDBApp')
+angular.module('samplemongdbApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('account', {

@@ -22,11 +22,11 @@ public class BankAccount implements Serializable {
     @NotNull
     @Field("name")
     private String name;
-
+    
     @NotNull
     @Field("balance")
     private BigDecimal balance;
-
+    
     public String getId() {
         return id;
     }
@@ -38,7 +38,7 @@ public class BankAccount implements Serializable {
     public String getName() {
         return name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -46,7 +46,7 @@ public class BankAccount implements Serializable {
     public BigDecimal getBalance() {
         return balance;
     }
-
+    
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
@@ -60,6 +60,9 @@ public class BankAccount implements Serializable {
             return false;
         }
         BankAccount bankAccount = (BankAccount) o;
+        if(bankAccount.id == null || id == null) {
+            return false;
+        }
         return Objects.equals(id, bankAccount.id);
     }
 

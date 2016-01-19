@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('sampleMongDBApp')
+angular.module('samplemongdbApp')
     .factory('errorHandlerInterceptor', function ($q, $rootScope) {
         return {
             'responseError': function (response) {
                 if (!(response.status == 401 && response.data.path.indexOf("/api/account") == 0 )){
-	                $rootScope.$emit('sampleMongDBApp.httpError', response);
+	                $rootScope.$emit('samplemongdbApp.httpError', response);
 	            }
                 return $q.reject(response);
             }
