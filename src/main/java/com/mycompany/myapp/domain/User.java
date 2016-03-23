@@ -24,6 +24,8 @@ import java.time.ZonedDateTime;
 @Document(collection = "jhi_user")
 public class User extends AbstractAuditingEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     private String id;
 
@@ -45,6 +47,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Field("last_name")
     private String lastName;
 
+    @NotNull
     @Email
     @Size(max = 100)
     private String email;

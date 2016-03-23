@@ -1,0 +1,16 @@
+version: '2'
+services:
+    samplemongdb-app:
+        image: samplemongdb
+        external_links:
+            - samplemongdb-mongodb:mongodb
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017
+            - SPRING_DATA_MONGODB_DATABASE=sampleMongDB
+        ports:
+            - 8080:8080
+    samplemongdb-mongodb:
+        extends:
+            file: mongodb.yml
+            service: samplemongdb-mongodb

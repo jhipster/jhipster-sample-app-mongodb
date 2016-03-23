@@ -3,34 +3,34 @@ package com.mycompany.myapp.web.rest.util;
 import org.springframework.http.HttpHeaders;
 
 /**
- * Utility class for http header creation.
+ * Utility class for HTTP headers creation.
  *
  */
 public class HeaderUtil {
 
     public static HttpHeaders createAlert(String message, String param) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-samplemongdbApp-alert", message);
-        headers.add("X-samplemongdbApp-params", param);
+        headers.add("X-sampleMongDbApp-alert", message);
+        headers.add("X-sampleMongDbApp-params", param);
         return headers;
     }
 
     public static HttpHeaders createEntityCreationAlert(String entityName, String param) {
-        return createAlert("samplemongdbApp." + entityName + ".created", param);
+        return createAlert("sampleMongDbApp." + entityName + ".created", param);
     }
 
     public static HttpHeaders createEntityUpdateAlert(String entityName, String param) {
-        return createAlert("samplemongdbApp." + entityName + ".updated", param);
+        return createAlert("sampleMongDbApp." + entityName + ".updated", param);
     }
 
     public static HttpHeaders createEntityDeletionAlert(String entityName, String param) {
-        return createAlert("samplemongdbApp." + entityName + ".deleted", param);
+        return createAlert("sampleMongDbApp." + entityName + ".deleted", param);
     }
 
     public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-samplemongdbApp-error", "error." + errorKey);
-        headers.add("X-samplemongdbApp-params", entityName);
+        headers.add("X-sampleMongDbApp-error", "error." + errorKey);
+        headers.add("X-sampleMongDbApp-params", entityName);
         return headers;
     }
 }

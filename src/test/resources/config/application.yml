@@ -45,9 +45,9 @@ jhipster:
         maxPoolSize: 50
         queueCapacity: 10000
     security:
-        rememberme:
+        rememberMe:
             # security key (this key should be unique for your application, and kept secret)
-            key: 78418762bc8e01480ff00ba3861f0b09e0517d3f
+            key: 3c2aeafd59550af64ee249e46a6a29cc1ae01016
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
     swagger:
@@ -55,6 +55,8 @@ jhipster:
         description: sampleMongDB API documentation
         version: 0.0.1
         termsOfServiceUrl:
-        contact:
+        contactName:
+        contactUrl:
+        contactEmail:
         license:
         licenseUrl:

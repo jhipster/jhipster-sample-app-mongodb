@@ -1,6 +1,6 @@
 {
     "health": {
-        "title": "Health checks",
+        "title": "Health Checks",
         "refresh.button": "Refresh",
         "stacktrace": "Stacktrace",
         "details": {
@@ -12,7 +12,7 @@
         },
         "indicator": {
             "diskSpace": "Disk space",
-            "mail": "Email",
+            "mail": "Email"
             "mongo": "MongoDB"
         },
         "table": {

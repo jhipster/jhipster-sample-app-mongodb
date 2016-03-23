@@ -1,4 +1,4 @@
-beforeEach(module('samplemongdbApp'));
+beforeEach(module('sampleMongDbApp'));
 /**
  * returns a function whose angular will be replaced
  * with whatever mock was supplied.

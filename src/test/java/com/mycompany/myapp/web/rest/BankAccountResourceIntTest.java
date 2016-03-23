@@ -1,6 +1,6 @@
 package com.mycompany.myapp.web.rest;
 
-import com.mycompany.myapp.Application;
+import com.mycompany.myapp.SampleMongDbApp;
 import com.mycompany.myapp.domain.BankAccount;
 import com.mycompany.myapp.repository.BankAccountRepository;
 
@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see BankAccountResource
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringApplicationConfiguration(classes = SampleMongDbApp.class)
 @WebAppConfiguration
 @IntegrationTest
 public class BankAccountResourceIntTest {
@@ -84,7 +84,7 @@ public class BankAccountResourceIntTest {
 
         // Create the BankAccount
 
-        restBankAccountMockMvc.perform(post("/api/bankAccounts")
+        restBankAccountMockMvc.perform(post("/api/bank-accounts")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(bankAccount)))
                 .andExpect(status().isCreated());
@@ -105,7 +105,7 @@ public class BankAccountResourceIntTest {
 
         // Create the BankAccount, which fails.
 
-        restBankAccountMockMvc.perform(post("/api/bankAccounts")
+        restBankAccountMockMvc.perform(post("/api/bank-accounts")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(bankAccount)))
                 .andExpect(status().isBadRequest());
@@ -122,7 +122,7 @@ public class BankAccountResourceIntTest {
 
         // Create the BankAccount, which fails.
 
-        restBankAccountMockMvc.perform(post("/api/bankAccounts")
+        restBankAccountMockMvc.perform(post("/api/bank-accounts")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(bankAccount)))
                 .andExpect(status().isBadRequest());
@@ -137,7 +137,7 @@ public class BankAccountResourceIntTest {
         bankAccountRepository.save(bankAccount);
 
         // Get all the bankAccounts
-        restBankAccountMockMvc.perform(get("/api/bankAccounts?sort=id,desc"))
+        restBankAccountMockMvc.perform(get("/api/bank-accounts?sort=id,desc"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(bankAccount.getId())))
@@ -151,7 +151,7 @@ public class BankAccountResourceIntTest {
         bankAccountRepository.save(bankAccount);
 
         // Get the bankAccount
-        restBankAccountMockMvc.perform(get("/api/bankAccounts/{id}", bankAccount.getId()))
+        restBankAccountMockMvc.perform(get("/api/bank-accounts/{id}", bankAccount.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(bankAccount.getId()))
@@ -162,7 +162,7 @@ public class BankAccountResourceIntTest {
     @Test
     public void getNonExistingBankAccount() throws Exception {
         // Get the bankAccount
-        restBankAccountMockMvc.perform(get("/api/bankAccounts/{id}", Long.MAX_VALUE))
+        restBankAccountMockMvc.perform(get("/api/bank-accounts/{id}", Long.MAX_VALUE))
                 .andExpect(status().isNotFound());
     }
 
@@ -170,16 +170,17 @@ public class BankAccountResourceIntTest {
     public void updateBankAccount() throws Exception {
         // Initialize the database
         bankAccountRepository.save(bankAccount);
-
-		int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
+        int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
 
         // Update the bankAccount
-        bankAccount.setName(UPDATED_NAME);
-        bankAccount.setBalance(UPDATED_BALANCE);
+        BankAccount updatedBankAccount = new BankAccount();
+        updatedBankAccount.setId(bankAccount.getId());
+        updatedBankAccount.setName(UPDATED_NAME);
+        updatedBankAccount.setBalance(UPDATED_BALANCE);
 
-        restBankAccountMockMvc.perform(put("/api/bankAccounts")
+        restBankAccountMockMvc.perform(put("/api/bank-accounts")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(bankAccount)))
+                .content(TestUtil.convertObjectToJsonBytes(updatedBankAccount)))
                 .andExpect(status().isOk());
 
         // Validate the BankAccount in the database
@@ -194,11 +195,10 @@ public class BankAccountResourceIntTest {
     public void deleteBankAccount() throws Exception {
         // Initialize the database
         bankAccountRepository.save(bankAccount);
-
-		int databaseSizeBeforeDelete = bankAccountRepository.findAll().size();
+        int databaseSizeBeforeDelete = bankAccountRepository.findAll().size();
 
         // Get the bankAccount
-        restBankAccountMockMvc.perform(delete("/api/bankAccounts/{id}", bankAccount.getId())
+        restBankAccountMockMvc.perform(delete("/api/bank-accounts/{id}", bankAccount.getId())
                 .accept(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 

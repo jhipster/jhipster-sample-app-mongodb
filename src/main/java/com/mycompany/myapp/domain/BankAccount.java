@@ -16,17 +16,19 @@ import java.util.Objects;
 @Document(collection = "bank_account")
 public class BankAccount implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     private String id;
 
     @NotNull
     @Field("name")
     private String name;
-    
+
     @NotNull
     @Field("balance")
     private BigDecimal balance;
-    
+
     public String getId() {
         return id;
     }
@@ -38,7 +40,7 @@ public class BankAccount implements Serializable {
     public String getName() {
         return name;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
@@ -46,7 +48,7 @@ public class BankAccount implements Serializable {
     public BigDecimal getBalance() {
         return balance;
     }
-    
+
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }

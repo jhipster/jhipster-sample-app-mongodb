@@ -21,10 +21,9 @@ import java.io.Serializable;
 @Document(collection = "jhi_persistent_token")
 public class PersistentToken implements Serializable {
 
-    
+    private static final long serialVersionUID = 1L;
+
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d MMMM yyyy");
-    
-    
 
     private static final int MAX_USER_AGENT_LEN = 255;
 

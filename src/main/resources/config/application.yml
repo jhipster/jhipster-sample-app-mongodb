@@ -11,14 +11,12 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+
 spring:
-    jpa:
-        open-in-view: false
-        hibernate:
-            ddl-auto: none
-            naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+    application:
+        name: sampleMongDB
     messages:
-        basename: classpath:/i18n/messages
+        basename: i18n/messages
     mvc:
         favicon:
             enabled: false
@@ -48,14 +46,16 @@ jhipster:
     mail:
         from: sampleMongDB@localhost
     security:
-        rememberme:
+        rememberMe:
             # security key (this key should be unique for your application, and kept secret)
-            key: 78418762bc8e01480ff00ba3861f0b09e0517d3f
+            key: 3c2aeafd59550af64ee249e46a6a29cc1ae01016
     swagger:
         title: sampleMongDB API
         description: sampleMongDB API documentation
         version: 0.0.1
         termsOfServiceUrl:
-        contact:
+        contactName:
+        contactUrl:
+        contactEmail:
         license:
         licenseUrl:
