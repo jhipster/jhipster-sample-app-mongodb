@@ -3,7 +3,7 @@ services:
     samplemongdb-mongodb:
         container_name: samplemongdb-mongodb
         image: mongo:3.2.3
+        ports:
+            - "27017:27017"
         # volumes:
         #     - ~/volumes/jhipster/sampleMongDB/mongodb/:/data/db/
-        ports:
-            - 27017:27017

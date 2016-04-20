@@ -5,16 +5,15 @@
         .module('sampleMongDbApp')
         .controller('BankAccountDialogController', BankAccountDialogController);
 
-    BankAccountDialogController.$inject = ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'BankAccount'];
+    BankAccountDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'BankAccount'];
 
-    function BankAccountDialogController ($scope, $stateParams, $uibModalInstance, entity, BankAccount) {
+    function BankAccountDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, BankAccount) {
         var vm = this;
         vm.bankAccount = entity;
-        vm.load = function(id) {
-            BankAccount.get({id : id}, function(result) {
-                vm.bankAccount = result;
-            });
-        };
+
+        $timeout(function (){
+            angular.element('.form-group:eq(1)>input').focus();
+        });
 
         var onSaveSuccess = function (result) {
             $scope.$emit('sampleMongDbApp:bankAccountUpdate', result);

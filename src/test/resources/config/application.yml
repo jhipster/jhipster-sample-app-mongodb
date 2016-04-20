@@ -11,6 +11,8 @@
 # ===================================================================
 
 spring:
+    application:
+        name: sampleMongDB
     data:
         mongodb:
             host: localhost
@@ -60,3 +62,4 @@ jhipster:
         contactEmail:
         license:
         licenseUrl:
+        enabled: false

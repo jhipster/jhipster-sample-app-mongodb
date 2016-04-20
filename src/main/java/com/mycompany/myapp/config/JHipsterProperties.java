@@ -188,6 +188,8 @@ public class JHipsterProperties {
 
         private String licenseUrl;
 
+        private Boolean enabled;
+
         public String getTitle() {
             return title;
         }
@@ -258,6 +260,14 @@ public class JHipsterProperties {
 
         public void setLicenseUrl(String licenseUrl) {
             this.licenseUrl = licenseUrl;
+        }
+
+        public Boolean isEnabled() {
+            return enabled;
+        }
+
+        public void setEnabled(Boolean enabled) {
+            this.enabled = enabled;
         }
     }
 

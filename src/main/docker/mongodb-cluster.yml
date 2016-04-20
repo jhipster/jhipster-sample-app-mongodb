@@ -1,0 +1,17 @@
+version: '2'
+services:
+    samplemongdb-mongodb:
+        container_name: samplemongdb-mongodb
+        image: mongo:3.2.3
+        ports:
+            - "27017:27017"
+        command: mongos --configdb samplemongdb-mongodb-config
+    samplemongdb-mongodb-node:
+        build:
+            context: .
+            dockerfile: mongodb/MongoDB.Dockerfile
+        command: mongod --replSet rs1 --noprealloc --smallfiles
+    samplemongdb-mongodb-config:
+        image: mongo:3.2.3
+        container_name: samplemongdb-mongodb-config
+        command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db
