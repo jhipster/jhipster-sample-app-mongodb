@@ -2,7 +2,7 @@ package com.mycompany.myapp.config;
 
 import com.mycompany.myapp.domain.util.JSR310DateConverters.*;
 import com.mongodb.Mongo;
-import org.mongeez.Mongeez;
+import com.github.mongobee.Mongobee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
@@ -72,13 +72,13 @@ public class DatabaseConfiguration extends AbstractMongoConfiguration {
     }
 
     @Bean
-    public Mongeez mongeez() {
-        log.debug("Configuring Mongeez");
-        Mongeez mongeez = new Mongeez();
-        mongeez.setFile(new ClassPathResource("/config/mongeez/master.xml"));
-        mongeez.setMongo(mongo);
-        mongeez.setDbName(mongoProperties.getDatabase());
-        mongeez.process();
-        return mongeez;
+    public Mongobee mongobee() {
+        log.debug("Configuring Mongobee");
+        Mongobee mongobee = new Mongobee(mongo);
+        mongobee.setDbName(mongoProperties.getDatabase());
+        // package to scan for migrations
+        mongobee.setChangeLogsScanPackage("com.mycompany.myapp.config.dbmigrations");
+        mongobee.setEnabled(true);
+        return mongobee;
     }
 }

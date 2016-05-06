@@ -1,5 +1,7 @@
 package com.mycompany.myapp.domain;
 
+import com.mycompany.myapp.config.Constants;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 
@@ -15,6 +17,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import java.time.ZonedDateTime;
 
@@ -30,7 +33,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private String id;
 
     @NotNull
-    @Pattern(regexp = "^[a-z0-9]*$|(anonymousUser)")
+    @Pattern(regexp = Constants.LOGIN_REGEX)
     @Size(min = 1, max = 50)
     private String login;
 
@@ -47,7 +50,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Field("last_name")
     private String lastName;
 
-    @NotNull
     @Email
     @Size(max = 100)
     private String email;
@@ -85,8 +87,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
         return login;
     }
 
+    //Lowercase the login before saving it in database
     public void setLogin(String login) {
-        this.login = login;
+        this.login = login.toLowerCase(Locale.ENGLISH);
     }
 
     public String getPassword() {

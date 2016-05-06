@@ -11,6 +11,8 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+management:
+    context-path: /management
 
 spring:
     application:
@@ -45,10 +47,6 @@ jhipster:
         #max-age: 1800
     mail:
         from: sampleMongDB@localhost
-    security:
-        rememberMe:
-            # security key (this key should be unique for your application, and kept secret)
-            key: 3c2aeafd59550af64ee249e46a6a29cc1ae01016
     swagger:
         title: sampleMongDB API
         description: sampleMongDB API documentation
@@ -59,3 +57,6 @@ jhipster:
         contactEmail:
         license:
         licenseUrl:
+    ribbon:
+        # comma seperated list of profiles to show a ribbon on the GUI
+        displayOnActiveProfiles: dev

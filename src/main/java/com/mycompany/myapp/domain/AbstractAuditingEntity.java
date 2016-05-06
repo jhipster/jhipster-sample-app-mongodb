@@ -10,7 +10,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Field;
 import java.time.ZonedDateTime;
 
-import javax.validation.constraints.NotNull;
 
 /**
  * Base abstract class for entities which will hold definitions for created, last modified by and created,

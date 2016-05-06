@@ -1,5 +1,6 @@
 package com.mycompany.myapp.config;
 
+import com.github.mongobee.Mongobee;
 import com.mongodb.Mongo;
 import com.mycompany.myapp.domain.util.JSR310DateConverters.*;
 
@@ -50,6 +51,17 @@ public class CloudMongoDbConfiguration extends AbstractMongoConfiguration  {
         converterList.add(DateToLocalDateTimeConverter.INSTANCE);
         converterList.add(LocalDateTimeToDateConverter.INSTANCE);
         return new CustomConversions(converterList);
+    }
+
+    @Bean
+    public Mongobee mongobee() throws Exception {
+        log.debug("Configuring Mongobee");
+        Mongobee mongobee = new Mongobee(mongo());
+        mongobee.setDbName(getDatabaseName());
+        // package to scan for migrations
+        mongobee.setChangeLogsScanPackage("io.github.jhipster.cms.config.dbmigrations");
+        mongobee.setEnabled(true);
+        return mongobee;
     }
 
     @Override
