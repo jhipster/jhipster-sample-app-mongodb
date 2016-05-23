@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .controller('NavbarController', NavbarController);
 
     NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ProfileService', 'LoginService'];

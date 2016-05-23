@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .filter('words', words);
 
     function words() {

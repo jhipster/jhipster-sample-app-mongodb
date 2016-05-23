@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .directive('hasAuthority', hasAuthority);
 
     function hasAuthority(Principal) {

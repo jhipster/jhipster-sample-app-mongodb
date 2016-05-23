@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .constant('paginationConstants', {
             'itemsPerPage': 20
         });

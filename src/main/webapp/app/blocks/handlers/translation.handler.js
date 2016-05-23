@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .factory('translationHandler', translationHandler);
 
     translationHandler.$inject = ['$rootScope', '$window', '$state', '$translate'];

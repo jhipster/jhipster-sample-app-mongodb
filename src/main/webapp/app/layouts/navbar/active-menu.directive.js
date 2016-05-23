@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .directive('activeMenu', activeMenu);
 
     function activeMenu($translate, $locale, tmhDynamicLocale) {

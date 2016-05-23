@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .config(localStorageConfig);
 
     localStorageConfig.$inject = ['$localStorageProvider'];

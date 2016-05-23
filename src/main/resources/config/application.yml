@@ -15,14 +15,15 @@ management:
     context-path: /management
     health:
         mail:
-          enabled: false # When using the MailService, configure an SMTP server and set this to true
+            enabled: false # When using the MailService, configure an SMTP server and set this to true
 
 spring:
     application:
-        name: sampleMongDB
+        name: jhipsterMongodbSampleApplication
     profiles:
         # The commented value for `active` can be replaced with valid spring profiles to load.
-        # This will be overwritten by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
+        # Otherwise, it will be filled in by maven when building the WAR file
+        # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
         active: #spring.profiles.active#
     messages:
         basename: i18n/messages
@@ -53,10 +54,10 @@ jhipster:
         #allow-credentials: true
         #max-age: 1800
     mail:
-        from: sampleMongDB@localhost
+        from: jhipsterMongodbSampleApplication@localhost
     swagger:
-        title: sampleMongDB API
-        description: sampleMongDB API documentation
+        title: jhipsterMongodbSampleApplication API
+        description: jhipsterMongodbSampleApplication API documentation
         version: 0.0.1
         termsOfServiceUrl:
         contactName:

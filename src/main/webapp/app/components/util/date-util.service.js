@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .factory('DateUtils', DateUtils);
 
     DateUtils.$inject = ['$filter'];

@@ -14,6 +14,6 @@
     };
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .component('jhiItemCount', jhiItemCount);
 })();

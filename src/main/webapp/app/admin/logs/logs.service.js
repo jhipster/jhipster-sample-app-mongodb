@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .factory('LogsService', LogsService);
 
     LogsService.$inject = ['$resource'];

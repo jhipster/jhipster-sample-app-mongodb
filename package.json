@@ -1,7 +1,7 @@
 {
-  "name": "sample-mong-db",
+  "name": "jhipster-mongodb-sample-application",
   "version": "0.0.0",
-  "description": "Description for sampleMongDB",
+  "description": "Description for jhipsterMongodbSampleApplication",
   "private": true,
   "cacheDirectories": [
     "node_modules",

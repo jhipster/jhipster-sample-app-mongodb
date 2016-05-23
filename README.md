@@ -1,4 +1,4 @@
-# sampleMongDB
+# jhipsterMongodbSampleApplication
 
 This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
 
@@ -31,7 +31,7 @@ Add the `-h` flag on any command to see how you can use it. For example, `bower 
 
 ## Building for production
 
-To optimize the sampleMongDB client for production, run:
+To optimize the jhipsterMongodbSampleApplication client for production, run:
 
     ./mvnw -Pprod clean package
 
@@ -57,9 +57,9 @@ and can be run by starting Spring Boot in one terminal (`./mvnw spring-boot:run`
 
 To setup this project in Jenkins, use the following configuration:
 
-* Project name: `sampleMongDB`
+* Project name: `jhipsterMongodbSampleApplication`
 * Source Code Management
-    * Git Repository: `git@github.com:xxxx/sampleMongDB.git`
+    * Git Repository: `git@github.com:xxxx/jhipsterMongodbSampleApplication.git`
     * Branches to build: `*/master`
     * Additional Behaviours: `Wipe out repository & force clone`
 * Build Triggers

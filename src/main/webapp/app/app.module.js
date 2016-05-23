@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp', [
+        .module('jhipsterMongodbSampleApplicationApp', [
             'ngStorage', 
             'tmh.dynamicLocale',
             'pascalprecht.translate', 

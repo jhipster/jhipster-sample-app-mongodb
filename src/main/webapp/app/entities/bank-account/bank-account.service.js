@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .factory('BankAccount', BankAccount);
 
     BankAccount.$inject = ['$resource'];

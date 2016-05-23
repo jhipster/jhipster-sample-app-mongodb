@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .factory('Base64', Base64);
 
     function Base64 () {

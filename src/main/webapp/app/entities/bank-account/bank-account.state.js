@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .config(stateConfig);
 
     stateConfig.$inject = ['$stateProvider'];
@@ -14,7 +14,7 @@
             url: '/bank-account',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'sampleMongDbApp.bankAccount.home.title'
+                pageTitle: 'jhipsterMongodbSampleApplicationApp.bankAccount.home.title'
             },
             views: {
                 'content@': {
@@ -36,7 +36,7 @@
             url: '/bank-account/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'sampleMongDbApp.bankAccount.detail.title'
+                pageTitle: 'jhipsterMongodbSampleApplicationApp.bankAccount.detail.title'
             },
             views: {
                 'content@': {

@@ -12,12 +12,12 @@
 
 spring:
     application:
-        name: sampleMongDB
+        name: jhipsterMongodbSampleApplication
     data:
         mongodb:
             host: localhost
             port: 27117
-            database: sampleMongDB
+            database: jhipsterMongodbSampleApplication
     mail:
         host: localhost
     mvc:
@@ -53,8 +53,8 @@ jhipster:
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
     swagger:
-        title: sampleMongDB API
-        description: sampleMongDB API documentation
+        title: jhipsterMongodbSampleApplication API
+        description: jhipsterMongodbSampleApplication API documentation
         version: 0.0.1
         termsOfServiceUrl:
         contactName:

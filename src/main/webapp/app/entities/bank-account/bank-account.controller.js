@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .controller('BankAccountController', BankAccountController);
 
     BankAccountController.$inject = ['$scope', '$state', 'BankAccount'];

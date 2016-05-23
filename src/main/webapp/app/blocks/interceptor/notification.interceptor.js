@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .factory('notificationInterceptor', notificationInterceptor);
 
     notificationInterceptor.$inject = ['$q', 'AlertService'];
@@ -15,9 +15,9 @@
         return service;
 
         function response (response) {
-            var alertKey = response.headers('X-sampleMongDbApp-alert');
+            var alertKey = response.headers('X-jhipsterMongodbSampleApplicationApp-alert');
             if (angular.isString(alertKey)) {
-                AlertService.success(alertKey, { param : response.headers('X-sampleMongDbApp-params')});
+                AlertService.success(alertKey, { param : response.headers('X-jhipsterMongodbSampleApplicationApp-params')});
             }
             return response;
         }

@@ -1,16 +1,16 @@
 version: '2'
 services:
-    samplemongdb-app:
-        image: samplemongdb
+    jhipstermongodbsampleapplication-app:
+        image: jhipstermongodbsampleapplication
         external_links:
-            - samplemongdb-mongodb:mongodb
+            - jhipstermongodbsampleapplication-mongodb:mongodb
         environment:
             - SPRING_PROFILES_ACTIVE=prod
             - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017
-            - SPRING_DATA_MONGODB_DATABASE=sampleMongDB
+            - SPRING_DATA_MONGODB_DATABASE=jhipsterMongodbSampleApplication
         ports:
             - 8080:8080
-    samplemongdb-mongodb:
+    jhipstermongodbsampleapplication-mongodb:
         extends:
             file: mongodb.yml
-            service: samplemongdb-mongodb
+            service: jhipstermongodbsampleapplication-mongodb

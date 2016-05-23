@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .directive('pageRibbon', pageRibbon);
 
     function pageRibbon(ProfileService, $rootScope, $translate) {

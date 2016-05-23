@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('sampleMongDbApp')
+    angular.module('jhipsterMongodbSampleApplicationApp')
         .controller('HealthModalController', HealthModalController);
 
     HealthModalController.$inject = ['$uibModalInstance', 'currentHealth', 'baseName', 'subSystemName'];

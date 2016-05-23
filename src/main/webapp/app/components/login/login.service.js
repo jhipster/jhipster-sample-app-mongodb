@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleMongDbApp')
+        .module('jhipsterMongodbSampleApplicationApp')
         .factory('LoginService', LoginService);
 
     LoginService.$inject = ['$uibModal'];

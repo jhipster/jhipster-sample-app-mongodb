@@ -1,8 +1,8 @@
 version: '2'
 services:
-    samplemongdb-sonar:
-        container_name: samplemongdb-sonar
-        image: sonarqube:5.3
+    jhipstermongodbsampleapplication-sonar:
+        container_name: jhipstermongodbsampleapplication-sonar
+        image: sonarqube:5.5-alpine
         ports:
             - 9000:9000
             - 9092:9092

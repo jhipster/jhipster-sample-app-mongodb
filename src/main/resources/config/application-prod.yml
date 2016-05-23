@@ -20,7 +20,7 @@ spring:
     data:
         mongodb:
             uri: mongodb://localhost:27017
-            database: sampleMongDB
+            database: jhipsterMongodbSampleApplication
     mail:
         host: localhost
         port: 25
@@ -28,9 +28,6 @@ spring:
         password:
     thymeleaf:
         cache: true
-
-liquibase:
-    contexts: prod
 
 server:
     port: 8080
@@ -52,7 +49,7 @@ jhipster:
             # security key (this key should be unique for your application, and kept secret)
             key: 3c2aeafd59550af64ee249e46a6a29cc1ae01016
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: sampleMongDB@localhost
+        from: jhipsterMongodbSampleApplication@localhost
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:
@@ -63,7 +60,7 @@ jhipster:
             enabled: false
             host: localhost
             port: 2003
-            prefix: sampleMongDB
+            prefix: jhipsterMongodbSampleApplication
         logs: # Reports Dropwizard metrics in the logs
             enabled: false
             reportFrequency: 60 # in seconds
