@@ -43,7 +43,7 @@ public class CloudMongoDbConfiguration extends AbstractMongoConfiguration  {
 
     @Bean
     public CustomConversions customConversions() {
-        List<Converter<?, ?>> converterList = new ArrayList<>();;
+        List<Converter<?, ?>> converterList = new ArrayList<>();
         converterList.add(DateToZonedDateTimeConverter.INSTANCE);
         converterList.add(ZonedDateTimeToDateConverter.INSTANCE);
         converterList.add(DateToLocalDateConverter.INSTANCE);

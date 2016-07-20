@@ -13,6 +13,8 @@
 spring:
     application:
         name: jhipsterMongodbSampleApplication
+    jackson:
+        serialization.write_dates_as_timestamps: false
     data:
         mongodb:
             host: localhost
@@ -62,4 +64,3 @@ jhipster:
         contactEmail:
         license:
         licenseUrl:
-        enabled: false
