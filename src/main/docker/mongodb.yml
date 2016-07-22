@@ -2,7 +2,7 @@ version: '2'
 services:
     jhipstermongodbsampleapplication-mongodb:
         container_name: jhipstermongodbsampleapplication-mongodb
-        image: mongo:3.3.5
+        image: mongo:3.3.9
         ports:
             - "27017:27017"
         # volumes:
