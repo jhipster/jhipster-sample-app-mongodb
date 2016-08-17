@@ -19,10 +19,10 @@ import org.springframework.data.mongodb.core.convert.CustomConversions;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Configuration
 @Profile("!" + Constants.SPRING_PROFILE_CLOUD)

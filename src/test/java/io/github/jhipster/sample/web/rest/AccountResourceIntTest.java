@@ -8,18 +8,16 @@ import io.github.jhipster.sample.repository.UserRepository;
 import io.github.jhipster.sample.security.AuthoritiesConstants;
 import io.github.jhipster.sample.service.MailService;
 import io.github.jhipster.sample.service.UserService;
-import io.github.jhipster.sample.web.rest.dto.ManagedUserDTO;
-import io.github.jhipster.sample.web.rest.dto.UserDTO;
+import io.github.jhipster.sample.service.dto.UserDTO;
+import io.github.jhipster.sample.web.rest.vm.ManagedUserVM;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -41,10 +39,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * @see UserService
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = JhipsterMongodbSampleApplicationApp.class)
-@WebAppConfiguration
-@IntegrationTest
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = JhipsterMongodbSampleApplicationApp.class)
 public class AccountResourceIntTest {
 
     @Inject
@@ -123,7 +119,7 @@ public class AccountResourceIntTest {
         restUserMockMvc.perform(get("/api/account")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.login").value("test"))
                 .andExpect(jsonPath("$.firstName").value("john"))
                 .andExpect(jsonPath("$.lastName").value("doe"))
@@ -142,7 +138,7 @@ public class AccountResourceIntTest {
 
     @Test
     public void testRegisterValid() throws Exception {
-        ManagedUserDTO validUser = new ManagedUserDTO(
+        ManagedUserVM validUser = new ManagedUserVM(
             null,                   // id
             "joe",                  // login
             "password",             // password
@@ -169,7 +165,7 @@ public class AccountResourceIntTest {
 
     @Test
     public void testRegisterInvalidLogin() throws Exception {
-        ManagedUserDTO invalidUser = new ManagedUserDTO(
+        ManagedUserVM invalidUser = new ManagedUserVM(
             null,                   // id
             "funky-log!n",          // login <-- invalid
             "password",             // password
@@ -196,7 +192,7 @@ public class AccountResourceIntTest {
 
     @Test
     public void testRegisterInvalidEmail() throws Exception {
-        ManagedUserDTO invalidUser = new ManagedUserDTO(
+        ManagedUserVM invalidUser = new ManagedUserVM(
             null,               // id
             "bob",              // login
             "password",         // password
@@ -223,7 +219,7 @@ public class AccountResourceIntTest {
 
     @Test
     public void testRegisterInvalidPassword() throws Exception {
-        ManagedUserDTO invalidUser = new ManagedUserDTO(
+        ManagedUserVM invalidUser = new ManagedUserVM(
             null,               // id
             "bob",              // login
             "123",              // password with only 3 digits
@@ -251,7 +247,7 @@ public class AccountResourceIntTest {
     @Test
     public void testRegisterDuplicateLogin() throws Exception {
         // Good
-        ManagedUserDTO validUser = new ManagedUserDTO(
+        ManagedUserVM validUser = new ManagedUserVM(
             null,                   // id
             "alice",                // login
             "password",             // password
@@ -267,7 +263,7 @@ public class AccountResourceIntTest {
         );
 
         // Duplicate login, different e-mail
-        ManagedUserDTO duplicatedUser = new ManagedUserDTO(validUser.getId(), validUser.getLogin(), validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
+        ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), validUser.getLogin(), validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
             "alicejr@example.com", true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
 
         // Good user
@@ -291,7 +287,7 @@ public class AccountResourceIntTest {
     @Test
     public void testRegisterDuplicateEmail() throws Exception {
         // Good
-        ManagedUserDTO validUser = new ManagedUserDTO(
+        ManagedUserVM validUser = new ManagedUserVM(
             null,                   // id
             "john",                 // login
             "password",             // password
@@ -307,7 +303,7 @@ public class AccountResourceIntTest {
         );
 
         // Duplicate e-mail, different login
-        ManagedUserDTO duplicatedUser = new ManagedUserDTO(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
+        ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
             validUser.getEmail(), true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
 
         // Good user
@@ -330,7 +326,7 @@ public class AccountResourceIntTest {
 
     @Test
     public void testRegisterAdminIsIgnored() throws Exception {
-        ManagedUserDTO validUser = new ManagedUserDTO(
+        ManagedUserVM validUser = new ManagedUserVM(
             null,                   // id
             "badguy",               // login
             "password",             // password
