@@ -72,5 +72,4 @@ public class JhipsterMongodbSampleApplicationApp {
             env.getProperty("server.port"));
 
     }
-
 }
