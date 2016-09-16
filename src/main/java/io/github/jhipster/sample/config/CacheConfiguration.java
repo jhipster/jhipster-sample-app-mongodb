@@ -32,4 +32,5 @@ public class CacheConfiguration {
         cacheManager = new NoOpCacheManager();
         return cacheManager;
     }
+
 }
