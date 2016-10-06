@@ -193,8 +193,12 @@ public class UserService {
     }
 
     public User getUserWithAuthorities() {
-        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
-        return user;
+        Optional<User> optionalUser = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        User user = null;
+        if (optionalUser.isPresent()) {
+          user = optionalUser.get();
+         }
+         return user;
     }
 
     /**
