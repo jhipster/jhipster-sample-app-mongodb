@@ -23,8 +23,6 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     Optional<User> findOneByLogin(String login);
 
-    Optional<User> findOneById(String userId);
-
     @Override
     void delete(User t);
 
