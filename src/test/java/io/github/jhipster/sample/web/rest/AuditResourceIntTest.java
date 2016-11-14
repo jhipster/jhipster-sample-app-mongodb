@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -48,6 +49,9 @@ public class AuditResourceIntTest {
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Inject
+    private FormattingConversionService formattingConversionService;
+
+    @Inject
     private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
 
     private PersistentAuditEvent auditEvent;
@@ -62,6 +66,7 @@ public class AuditResourceIntTest {
         AuditResource auditResource = new AuditResource(auditEventService);
         this.restAuditMockMvc = MockMvcBuilders.standaloneSetup(auditResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setConversionService(formattingConversionService)
             .setMessageConverters(jacksonMessageConverter).build();
     }
 

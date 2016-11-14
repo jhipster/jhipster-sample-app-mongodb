@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.core.convert.CustomConversions;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
@@ -28,15 +27,9 @@ import java.util.List;
 @EnableMongoRepositories("io.github.jhipster.sample.repository")
 @Import(value = MongoAutoConfiguration.class)
 @EnableMongoAuditing(auditorAwareRef = "springSecurityAuditorAware")
-public class DatabaseConfiguration extends AbstractMongoConfiguration {
+public class DatabaseConfiguration {
 
     private final Logger log = LoggerFactory.getLogger(DatabaseConfiguration.class);
-
-    @Inject
-    private Mongo mongo;
-
-    @Inject
-    private MongoProperties mongoProperties;
 
     @Bean
     public ValidatingMongoEventListener validatingMongoEventListener() {
@@ -48,30 +41,16 @@ public class DatabaseConfiguration extends AbstractMongoConfiguration {
         return new LocalValidatorFactoryBean();
     }
 
-    @Override
-    protected String getDatabaseName() {
-        return mongoProperties.getDatabase();
-    }
-
-    @Override
-    public Mongo mongo() throws Exception {
-        return mongo;
-    }
-
     @Bean
     public CustomConversions customConversions() {
         List<Converter<?, ?>> converters = new ArrayList<>();
         converters.add(DateToZonedDateTimeConverter.INSTANCE);
         converters.add(ZonedDateTimeToDateConverter.INSTANCE);
-        converters.add(DateToLocalDateConverter.INSTANCE);
-        converters.add(LocalDateToDateConverter.INSTANCE);
-        converters.add(DateToLocalDateTimeConverter.INSTANCE);
-        converters.add(LocalDateTimeToDateConverter.INSTANCE);
         return new CustomConversions(converters);
     }
 
     @Bean
-    public Mongobee mongobee() {
+    public Mongobee mongobee(Mongo mongo, MongoProperties mongoProperties) {
         log.debug("Configuring Mongobee");
         Mongobee mongobee = new Mongobee(mongo);
         mongobee.setDbName(mongoProperties.getDatabase());
