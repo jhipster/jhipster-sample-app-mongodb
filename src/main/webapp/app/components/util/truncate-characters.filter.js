@@ -4,7 +4,7 @@
     angular
         .module('jhipsterMongodbSampleApplicationApp')
         .filter('characters', characters);
-        
+
     function characters () {
         return charactersFilter;
 

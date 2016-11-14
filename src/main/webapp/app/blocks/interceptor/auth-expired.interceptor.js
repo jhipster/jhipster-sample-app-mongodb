@@ -5,7 +5,6 @@
         .module('jhipsterMongodbSampleApplicationApp')
         .factory('authExpiredInterceptor', authExpiredInterceptor);
 
-    
     authExpiredInterceptor.$inject = ['$rootScope', '$q', '$injector'];
 
     function authExpiredInterceptor($rootScope, $q, $injector) {
