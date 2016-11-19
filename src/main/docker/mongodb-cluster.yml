@@ -12,6 +12,6 @@ services:
             dockerfile: mongodb/MongoDB.Dockerfile
         command: mongod --replSet rs1 --noprealloc --smallfiles
     jhipstermongodbsampleapplication-mongodb-config:
-        image: mongo:mongo:3.2.10
+        image: mongo:3.2.10
         container_name: jhipstermongodbsampleapplication-mongodb-config
         command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db
