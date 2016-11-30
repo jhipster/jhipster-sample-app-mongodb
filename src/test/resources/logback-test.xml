@@ -4,7 +4,7 @@
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
     <logger name="io.github.jhipster.sample" level="DEBUG"/>
-    <logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>
+    <logger name="org.mongodb.driver" level="WARN"/>
     <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
 
     <root level="WARN">

@@ -62,7 +62,7 @@ public class BankAccount implements Serializable {
             return false;
         }
         BankAccount bankAccount = (BankAccount) o;
-        if(bankAccount.id == null || id == null) {
+        if (bankAccount.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, bankAccount.id);

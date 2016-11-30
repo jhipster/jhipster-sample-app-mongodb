@@ -119,7 +119,7 @@ public class UserService {
         }
         if (managedUserVM.getAuthorities() != null) {
             Set<Authority> authorities = new HashSet<>();
-            managedUserVM.getAuthorities().stream().forEach(
+            managedUserVM.getAuthorities().forEach(
                 authority -> authorities.add(authorityRepository.findOne(authority))
             );
             user.setAuthorities(authorities);
@@ -135,13 +135,13 @@ public class UserService {
     }
 
     public void updateUser(String firstName, String lastName, String email, String langKey) {
-        userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(u -> {
-            u.setFirstName(firstName);
-            u.setLastName(lastName);
-            u.setEmail(email);
-            u.setLangKey(langKey);
-            userRepository.save(u);
-            log.debug("Changed Information for User: {}", u);
+        userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmail(email);
+            user.setLangKey(langKey);
+            userRepository.save(user);
+            log.debug("Changed Information for User: {}", user);
         });
     }
 
@@ -150,36 +150,36 @@ public class UserService {
 
         Optional.of(userRepository
             .findOne(id))
-            .ifPresent(u -> {
-                u.setLogin(login);
-                u.setFirstName(firstName);
-                u.setLastName(lastName);
-                u.setEmail(email);
-                u.setActivated(activated);
-                u.setLangKey(langKey);
-                Set<Authority> managedAuthorities = u.getAuthorities();
+            .ifPresent(user -> {
+                user.setLogin(login);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(email);
+                user.setActivated(activated);
+                user.setLangKey(langKey);
+                Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
-                authorities.stream().forEach(
+                authorities.forEach(
                     authority -> managedAuthorities.add(authorityRepository.findOne(authority))
                 );
-                userRepository.save(u);
-                log.debug("Changed Information for User: {}", u);
+                userRepository.save(user);
+                log.debug("Changed Information for User: {}", user);
             });
     }
 
     public void deleteUser(String login) {
-        userRepository.findOneByLogin(login).ifPresent(u -> {
-            userRepository.delete(u);
-            log.debug("Deleted User: {}", u);
+        userRepository.findOneByLogin(login).ifPresent(user -> {
+            userRepository.delete(user);
+            log.debug("Deleted User: {}", user);
         });
     }
 
     public void changePassword(String password) {
-        userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(u -> {
+        userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
             String encryptedPassword = passwordEncoder.encode(password);
-            u.setPassword(encryptedPassword);
-            userRepository.save(u);
-            log.debug("Changed password for User: {}", u);
+            user.setPassword(encryptedPassword);
+            userRepository.save(user);
+            log.debug("Changed password for User: {}", user);
         });
     }
 
