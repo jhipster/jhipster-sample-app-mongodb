@@ -4,8 +4,6 @@ import io.github.jhipster.sample.config.Constants;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
-
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -57,6 +55,10 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Size(min = 2, max = 5)
     @Field("lang_key")
     private String langKey;
+
+    @Size(max = 256)
+    @Field("image_url")
+    private String imageUrl;
 
     @Size(max = 20)
     @Field("activation_key")
@@ -120,6 +122,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public boolean getActivated() {
@@ -200,6 +210,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
+            ", imageUrl='" + imageUrl + '\'' +
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +

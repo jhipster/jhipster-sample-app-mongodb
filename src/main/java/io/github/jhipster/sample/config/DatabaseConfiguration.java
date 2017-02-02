@@ -1,6 +1,8 @@
 package io.github.jhipster.sample.config;
 
-import io.github.jhipster.sample.domain.util.JSR310DateConverters.*;
+import io.github.jhipster.config.JHipsterConstants;
+import io.github.jhipster.domain.util.JSR310DateConverters.*;
+
 import com.mongodb.Mongo;
 import com.github.mongobee.Mongobee;
 import org.slf4j.Logger;
@@ -18,12 +20,11 @@ import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventL
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@Profile("!" + Constants.SPRING_PROFILE_CLOUD)
+@Profile("!" + JHipsterConstants.SPRING_PROFILE_CLOUD)
 @EnableMongoRepositories("io.github.jhipster.sample.repository")
 @Import(value = MongoAutoConfiguration.class)
 @EnableMongoAuditing(auditorAwareRef = "springSecurityAuditorAware")

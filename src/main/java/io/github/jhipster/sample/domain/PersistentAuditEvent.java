@@ -3,6 +3,8 @@ package io.github.jhipster.sample.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
@@ -13,7 +15,7 @@ import java.util.Map;
  * @see org.springframework.boot.actuate.audit.AuditEvent
  */
 @Document(collection = "jhi_persistent_audit_event")
-public class PersistentAuditEvent {
+public class PersistentAuditEvent implements Serializable {
 
     @Id
     @Field("event_id")

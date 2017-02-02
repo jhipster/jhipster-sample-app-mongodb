@@ -1,8 +1,10 @@
 package io.github.jhipster.sample.config;
 
-import io.github.jhipster.sample.domain.util.JSR310DateConverters.*;
-
 import com.github.mongobee.Mongobee;
+
+import io.github.jhipster.config.JHipsterConstants;
+import io.github.jhipster.domain.util.JSR310DateConverters.*;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +22,7 @@ import java.util.List;
 
 @Configuration
 @EnableMongoRepositories("io.github.jhipster.sample.repository")
-@Profile(Constants.SPRING_PROFILE_CLOUD)
+@Profile(JHipsterConstants.SPRING_PROFILE_CLOUD)
 public class CloudDatabaseConfiguration extends AbstractCloudConfig {
 
     private final Logger log = LoggerFactory.getLogger(CloudDatabaseConfiguration.class);

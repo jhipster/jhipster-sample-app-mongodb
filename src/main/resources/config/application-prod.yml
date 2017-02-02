@@ -2,6 +2,9 @@
 # Spring Boot configuration for the "prod" profile.
 #
 # This configuration overrides the application.yml file.
+#
+# More information on profiles: https://jhipster.github.io/profiles/
+# More information on configuration properties: https://jhipster.github.io/common-application-properties/
 # ===================================================================
 
 # ===================================================================
@@ -9,7 +12,6 @@
 # Full reference is available at:
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
-
 
 spring:
     devtools:
@@ -38,6 +40,8 @@ server:
 
 # ===================================================================
 # JHipster specific properties
+#
+# Full reference is available at: https://jhipster.github.io/common-application-properties/
 # ===================================================================
 
 jhipster:
@@ -45,12 +49,12 @@ jhipster:
         cache: # Used by the CachingHttpHeadersFilter
             timeToLiveInDays: 1461
     security:
-        rememberMe:
+        remember-me:
             # security key (this key should be unique for your application, and kept secret)
             key: 3c2aeafd59550af64ee249e46a6a29cc1ae01016
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: jhipsterMongodbSampleApplication@localhost
-        baseUrl: http://my-server-url-to-change # Modify according to your server's URL
+        base-url: http://my-server-url-to-change # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite:
@@ -69,4 +73,15 @@ jhipster:
             enabled: false
             host: localhost
             port: 5000
-            queueSize: 512
+            queue-size: 512
+
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration, like in the JHipsterProperties above
+#
+# More documentation is available at:
+# https://jhipster.github.io/common-application-properties/
+# ===================================================================
+
+application:
