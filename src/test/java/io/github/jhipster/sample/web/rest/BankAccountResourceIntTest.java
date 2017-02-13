@@ -4,6 +4,7 @@ import io.github.jhipster.sample.JhipsterMongodbSampleApplicationApp;
 
 import io.github.jhipster.sample.domain.BankAccount;
 import io.github.jhipster.sample.repository.BankAccountRepository;
+import io.github.jhipster.sample.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -50,6 +51,9 @@ public class BankAccountResourceIntTest {
     @Autowired
     private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
 
+    @Autowired
+    private ExceptionTranslator exceptionTranslator;
+
     private MockMvc restBankAccountMockMvc;
 
     private BankAccount bankAccount;
@@ -60,6 +64,7 @@ public class BankAccountResourceIntTest {
             BankAccountResource bankAccountResource = new BankAccountResource(bankAccountRepository);
         this.restBankAccountMockMvc = MockMvcBuilders.standaloneSetup(bankAccountResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
