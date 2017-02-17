@@ -2,11 +2,9 @@ version: '2'
 services:
     jhipstermongodbsampleapplication-app:
         image: jhipstermongodbsampleapplication
-        external_links:
-            - jhipstermongodbsampleapplication-mongodb:mongodb
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
-            - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017
+            - SPRING_DATA_MONGODB_URI=mongodb://jhipstermongodbsampleapplication-mongodb:27017
             - SPRING_DATA_MONGODB_DATABASE=jhipsterMongodbSampleApplication
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
         ports:
