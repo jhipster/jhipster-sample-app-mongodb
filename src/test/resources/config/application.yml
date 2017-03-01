@@ -26,6 +26,8 @@ spring:
             database: jhipsterMongodbSampleApplication
     mail:
         host: localhost
+    messages:
+        basename: i18n/messages
     mvc:
         favicon:
             enabled: false
