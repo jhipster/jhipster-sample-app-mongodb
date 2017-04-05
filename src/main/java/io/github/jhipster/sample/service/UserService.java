@@ -149,13 +149,15 @@ public class UserService {
      * @param lastName last name of user
      * @param email email id of user
      * @param langKey language key
+     * @param imageUrl image URL of user
      */
-    public void updateUser(String firstName, String lastName, String email, String langKey) {
+    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
             user.setLangKey(langKey);
+            user.setImageUrl(imageUrl);
             userRepository.save(user);
             log.debug("Changed Information for User: {}", user);
         });
@@ -206,7 +208,6 @@ public class UserService {
         });
     }
 
-    
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
         return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
     }
