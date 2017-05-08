@@ -5,8 +5,8 @@
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>1.5.2.RELEASE</version>
-        <relativePath />
+        <version>1.5.3.RELEASE</version>
+        <relativePath/>
     </parent>
 
     <groupId>io.github.jhipster.sample</groupId>
@@ -30,7 +30,7 @@
         <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
         <java.version>1.8</java.version>
         <jzlib.version>1.1.3</jzlib.version>
-        <jhipster.server.version>1.1.2</jhipster.server.version>
+        <jhipster.server.version>1.1.3</jhipster.server.version>
         <logstash-logback-encoder.version>4.9</logstash-logback-encoder.version>
         <m2e.apt.activation>jdt_apt</m2e.apt.activation>
         <mapstruct.version>1.1.0.Final</mapstruct.version>
@@ -43,7 +43,7 @@
         <maven.version>3.0.0</maven.version>
         <metrics-spring.version>3.1.3</metrics-spring.version>
         <mongobee.version>0.12</mongobee.version>
-        <node.version>v6.10.0</node.version>
+        <node.version>v6.10.2</node.version>
         <!-- These remain empty unless the corresponding profile is active -->
         <profile.no-liquibase />
         <profile.swagger />
@@ -83,11 +83,9 @@
         <sonar.surefire.reportsPath>${project.testresult.directory}/surefire-reports</sonar.surefire.reportsPath>
         <sonar.tests>${project.basedir}/src/test/</sonar.tests>
 
-        <sortpom-maven-plugin.version>2.5.0</sortpom-maven-plugin.version>
         <!-- Spring properties -->
         <springfox.version>2.6.1</springfox.version>
-        <undertow.version>1.4.10.Final</undertow.version>
-        <yarn.version>v0.21.3</yarn.version>
+        <yarn.version>v0.23.2</yarn.version>
     </properties>
 
 
@@ -111,7 +109,7 @@
             <artifactId>metrics-json</artifactId>
             <version>${dropwizard-metrics.version}</version>
         </dependency>
-                <dependency>
+        <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-jvm</artifactId>
             <version>${dropwizard-metrics.version}</version>
@@ -321,27 +319,6 @@
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
-            <plugin>
-                <groupId>com.github.ekryd.sortpom</groupId>
-                <artifactId>sortpom-maven-plugin</artifactId>
-                <version>${sortpom-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sort</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <sortProperties>true</sortProperties>
-                    <nrOfIndentSpace>4</nrOfIndentSpace>
-                    <sortDependencies>groupId,artifactId</sortDependencies>
-                    <sortPlugins>groupId,artifactId</sortPlugins>
-                    <keepBlankLines>true</keepBlankLines>
-                    <expandEmptyElements>false</expandEmptyElements>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>io.gatling</groupId>
                 <artifactId>gatling-maven-plugin</artifactId>

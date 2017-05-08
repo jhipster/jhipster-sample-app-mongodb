@@ -114,7 +114,7 @@ public class BankAccountResource {
     public ResponseEntity<Void> deleteBankAccount(@PathVariable String id) {
         log.debug("REST request to delete BankAccount : {}", id);
         bankAccountRepository.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id)).build();
     }
 
 }
