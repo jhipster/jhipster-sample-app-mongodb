@@ -73,7 +73,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @JsonIgnore
     private String resetKey;
 
-
     @Field("reset_date")
     private Instant resetDate = null;
 
