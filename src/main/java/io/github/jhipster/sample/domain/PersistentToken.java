@@ -16,6 +16,7 @@ import java.io.Serializable;
  *
  * @see io.github.jhipster.sample.security.PersistentTokenRememberMeServices
  */
+
 @Document(collection = "jhi_persistent_token")
 public class PersistentToken implements Serializable {
 

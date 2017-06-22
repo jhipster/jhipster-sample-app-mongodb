@@ -21,6 +21,7 @@ import java.time.Instant;
 /**
  * A user.
  */
+
 @Document(collection = "jhi_user")
 public class User extends AbstractAuditingEntity implements Serializable {
 

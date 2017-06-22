@@ -3,7 +3,6 @@ package io.github.jhipster.sample.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,12 +11,10 @@ import java.util.Objects;
 /**
  * A BankAccount.
  */
-
 @Document(collection = "bank_account")
 public class BankAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     private String id;
 
