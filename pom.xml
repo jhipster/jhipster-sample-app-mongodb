@@ -43,7 +43,7 @@
         <maven.version>3.0.0</maven.version>
         <metrics-spring.version>3.1.3</metrics-spring.version>
         <mongobee.version>0.12</mongobee.version>
-        <node.version>v6.11.0</node.version>
+        <node.version>v6.11.1</node.version>
         <!-- These remain empty unless the corresponding profile is active -->
         <profile.no-liquibase />
         <profile.swagger />
@@ -85,7 +85,7 @@
 
         <!-- Spring properties -->
         <springfox.version>2.7.0</springfox.version>
-        <yarn.version>v0.24.6</yarn.version>
+        <yarn.version>v0.27.5</yarn.version>
     </properties>
 
 

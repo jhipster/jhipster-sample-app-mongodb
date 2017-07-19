@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JacksonConfiguration {
 
-    /**
+    /*
      * Jackson Afterburner module to speed up serialization/deserialization.
      */
     @Bean
