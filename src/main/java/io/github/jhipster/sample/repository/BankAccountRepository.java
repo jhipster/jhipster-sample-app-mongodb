@@ -10,6 +10,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface BankAccountRepository extends MongoRepository<BankAccount,String> {
-    
+public interface BankAccountRepository extends MongoRepository<BankAccount, String> {
+
 }

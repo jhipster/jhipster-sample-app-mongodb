@@ -26,6 +26,7 @@ public class BankAccount implements Serializable {
     @Field("balance")
     private BigDecimal balance;
 
+    // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public String getId() {
         return id;
     }
@@ -49,6 +50,7 @@ public class BankAccount implements Serializable {
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
+    // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
