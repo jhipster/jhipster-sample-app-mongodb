@@ -45,6 +45,7 @@
         <mongobee.version>0.12</mongobee.version>
         <guava.version>23.0</guava.version>
         <node.version>v6.11.1</node.version>
+        <problem-spring-web.version>0.20.0</problem-spring-web.version>
         <!-- These remain empty unless the corresponding profile is active -->
         <profile.no-liquibase />
         <profile.swagger />
@@ -306,6 +307,11 @@
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>problem-spring-web</artifactId>
+            <version>${problem-spring-web.version}</version>
         </dependency>
         <!-- Spring Cloud -->
         <dependency>
