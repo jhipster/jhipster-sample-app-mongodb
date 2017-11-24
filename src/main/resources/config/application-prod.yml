@@ -45,8 +45,8 @@ spring:
 #    ssl:
 #        key-store: keystore.p12
 #        key-store-password: <your-password>
-#        keyStoreType: PKCS12
-#        keyAlias: jhipsterMongodbSampleApplication
+#        key-store-type: PKCS12
+#        key-alias: jhipsterMongodbSampleApplication
 # ===================================================================
 server:
     port: 8080

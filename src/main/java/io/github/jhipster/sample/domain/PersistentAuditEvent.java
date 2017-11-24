@@ -10,12 +10,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Persist AuditEvent managed by the Spring Boot actuator
+ * Persist AuditEvent managed by the Spring Boot actuator.
+ *
  * @see org.springframework.boot.actuate.audit.AuditEvent
  */
 @Document(collection = "jhi_persistent_audit_event")
 public class PersistentAuditEvent implements Serializable {
-
+    
     @Id
     @Field("event_id")
     private String id;
@@ -23,7 +24,9 @@ public class PersistentAuditEvent implements Serializable {
     @NotNull
     private String principal;
 
+    @Field("event_date")
     private Instant auditEventDate;
+
     @Field("event_type")
     private String auditEventType;
 

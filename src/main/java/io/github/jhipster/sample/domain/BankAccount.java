@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+
 /**
  * A BankAccount.
  */
@@ -15,6 +16,7 @@ import java.util.Objects;
 public class BankAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     private String id;
 
@@ -77,7 +79,7 @@ public class BankAccount implements Serializable {
         return "BankAccount{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", balance='" + getBalance() + "'" +
+            ", balance=" + getBalance() +
             "}";
     }
 }
