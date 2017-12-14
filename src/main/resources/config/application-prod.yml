@@ -73,9 +73,12 @@ jhipster:
         cache: # Used by the CachingHttpHeadersFilter
             timeToLiveInDays: 1461
     security:
-        remember-me:
-            # security key (this key should be unique for your application, and kept secret)
-            key: 3c2aeafd59550af64ee249e46a6a29cc1ae01016
+        authentication:
+            jwt:
+                secret: 73a2bb193957af7d11c4dc54d8c74cdfed1e051e
+                # Token is valid 24 hours
+                token-validity-in-seconds: 86400
+                token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: jhipsterMongodbSampleApplication@localhost
         base-url: http://my-server-url-to-change # Modify according to your server's URL

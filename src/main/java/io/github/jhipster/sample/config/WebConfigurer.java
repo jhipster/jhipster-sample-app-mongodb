@@ -93,11 +93,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
     private void setLocationForStaticAssets(ConfigurableEmbeddedServletContainer container) {
         File root;
         String prefixPath = resolvePathPrefix();
-        if (env.acceptsProfiles(JHipsterConstants.SPRING_PROFILE_PRODUCTION)) {
-            root = new File(prefixPath + "target/www/");
-        } else {
-            root = new File(prefixPath + "src/main/webapp/");
-        }
+        root = new File(prefixPath + "target/www/");
         if (root.exists() && root.isDirectory()) {
             container.setDocumentRoot(root);
         }
@@ -165,6 +161,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         if (config.getAllowedOrigins() != null && !config.getAllowedOrigins().isEmpty()) {
             log.debug("Registering CORS filter");
             source.registerCorsConfiguration("/api/**", config);
+            source.registerCorsConfiguration("/management/**", config);
             source.registerCorsConfiguration("/v2/api-docs", config);
         }
         return new CorsFilter(source);

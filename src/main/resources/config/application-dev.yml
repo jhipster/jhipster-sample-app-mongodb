@@ -78,13 +78,16 @@ jhipster:
         allowed-origins: "*"
         allowed-methods: "*"
         allowed-headers: "*"
-        exposed-headers: "Link,X-Total-Count"
+        exposed-headers: "Authorization,Link,X-Total-Count"
         allow-credentials: true
         max-age: 1800
     security:
-        remember-me:
-            # security key (this key should be unique for your application, and kept secret)
-            key: 3c2aeafd59550af64ee249e46a6a29cc1ae01016
+        authentication:
+            jwt:
+                secret: my-secret-token-to-change-in-production
+                # Token is valid 24 hours
+                token-validity-in-seconds: 86400
+                token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: jhipsterMongodbSampleApplication@localhost
         base-url: http://127.0.0.1:8080

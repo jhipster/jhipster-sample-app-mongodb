@@ -3,7 +3,6 @@ package io.github.jhipster.sample.service;
 import io.github.jhipster.sample.domain.Authority;
 import io.github.jhipster.sample.domain.User;
 import io.github.jhipster.sample.repository.AuthorityRepository;
-import io.github.jhipster.sample.repository.PersistentTokenRepository;
 import io.github.jhipster.sample.config.Constants;
 import io.github.jhipster.sample.repository.UserRepository;
 import io.github.jhipster.sample.security.AuthoritiesConstants;
@@ -20,7 +19,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -38,14 +36,11 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final PersistentTokenRepository persistentTokenRepository;
-
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.persistentTokenRepository = persistentTokenRepository;
         this.authorityRepository = authorityRepository;
     }
 
@@ -224,21 +219,6 @@ public class UserService {
 
     public Optional<User> getUserWithAuthorities() {
         return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneByLogin);
-    }
-
-    /**
-     * Persistent Token are used for providing automatic authentication, they should be automatically deleted after
-     * 30 days.
-     * <p>
-     * This is scheduled to get fired everyday, at midnight.
-     */
-    @Scheduled(cron = "0 0 0 * * ?")
-    public void removeOldPersistentTokens() {
-        LocalDate now = LocalDate.now();
-        persistentTokenRepository.findByTokenDateBefore(now.minusMonths(1)).forEach(token -> {
-            log.debug("Deleting token {}", token.getSeries());
-            persistentTokenRepository.delete(token);
-        });
     }
 
     /**
