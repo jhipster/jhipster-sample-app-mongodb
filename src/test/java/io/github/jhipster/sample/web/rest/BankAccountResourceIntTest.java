@@ -9,6 +9,7 @@ import io.github.jhipster.sample.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.ArrayList;
 
 import static io.github.jhipster.sample.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,6 +47,8 @@ public class BankAccountResourceIntTest {
 
     @Autowired
     private BankAccountRepository bankAccountRepository;
+
+
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -172,6 +176,7 @@ public class BankAccountResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].balance").value(hasItem(DEFAULT_BALANCE.intValue())));
     }
+    
 
     @Test
     public void getBankAccount() throws Exception {
@@ -198,10 +203,11 @@ public class BankAccountResourceIntTest {
     public void updateBankAccount() throws Exception {
         // Initialize the database
         bankAccountRepository.save(bankAccount);
+
         int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
 
         // Update the bankAccount
-        BankAccount updatedBankAccount = bankAccountRepository.findOne(bankAccount.getId());
+        BankAccount updatedBankAccount = bankAccountRepository.findById(bankAccount.getId()).get();
         updatedBankAccount.setName(UPDATED_NAME);
         updatedBankAccount.setBalance(UPDATED_BALANCE);
 
@@ -239,6 +245,7 @@ public class BankAccountResourceIntTest {
     public void deleteBankAccount() throws Exception {
         // Initialize the database
         bankAccountRepository.save(bankAccount);
+
         int databaseSizeBeforeDelete = bankAccountRepository.findAll().size();
 
         // Get the bankAccount
