@@ -204,19 +204,15 @@ public class UserService {
             .flatMap(userRepository::findOneByLogin)
             .ifPresent(user -> {
                 String currentEncryptedPassword = user.getPassword();
-                assertClearTextPasswordMatchesEncryptedPassword(currentClearTextPassword, currentEncryptedPassword);
+                if (!passwordEncoder.matches(currentClearTextPassword, currentEncryptedPassword)) {
+                    throw new InvalidPasswordException();
+                }
                 String encryptedPassword = passwordEncoder.encode(newPassword);
                 user.setPassword(encryptedPassword);
                 userRepository.save(user);
                 log.debug("Changed password for User: {}", user);
             });
     }
-        private void assertClearTextPasswordMatchesEncryptedPassword(String clearTextPassword, String encryptedPassword) {
-            if (!passwordEncoder.matches(clearTextPassword,encryptedPassword)){
-                throw new InvalidPasswordException();
-            }
-        }
-
 
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
         return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);

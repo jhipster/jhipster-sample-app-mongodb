@@ -3,6 +3,7 @@ services:
     jhipstermongodbsampleapplication-app:
         image: jhipstermongodbsampleapplication
         environment:
+            # - _JAVA_OPTIONS=-Xmx512m -Xms256m
             - SPRING_PROFILES_ACTIVE=prod,swagger
             - SPRING_DATA_MONGODB_URI=mongodb://jhipstermongodbsampleapplication-mongodb:27017
             - SPRING_DATA_MONGODB_DATABASE=jhipsterMongodbSampleApplication
