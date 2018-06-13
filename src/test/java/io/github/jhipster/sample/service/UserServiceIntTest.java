@@ -153,6 +153,7 @@ public class UserServiceIntTest {
 
     @Test
     public void testRemoveNotActivatedUsers() {
+
         user.setActivated(false);
         userRepository.save(user);
         // Let the audit first set the creation date but then update it

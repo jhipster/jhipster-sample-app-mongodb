@@ -9,6 +9,6 @@ if (module['hot']) {
 }
 
 platformBrowserDynamic()
-    .bootstrapModule(JhipsterMongodbSampleApplicationAppModule)
+    .bootstrapModule(JhipsterMongodbSampleApplicationAppModule, { preserveWhitespaces: true })
     .then(success => console.log(`Application started`))
     .catch(err => console.error(err));
