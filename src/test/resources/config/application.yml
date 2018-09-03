@@ -31,7 +31,7 @@ spring:
             enabled: false
     thymeleaf:
         mode: HTML
-        
+
 
 server:
     port: 10344
@@ -65,7 +65,8 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: 73a2bb193957af7d11c4dc54d8c74cdfed1e051e
+                # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+                base64-secret: 73a2bb193957af7d11c4dc54d8c74cdfed1e051e
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
