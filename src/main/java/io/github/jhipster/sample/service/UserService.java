@@ -83,16 +83,14 @@ public class UserService {
 
     public User registerUser(UserDTO userDTO, String password) {
         userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).ifPresent(existingUser -> {
-            if (!existingUser.getActivated()) {
-                userRepository.delete(existingUser);
-            } else {
+            boolean removed = removeNonActivatedUser(existingUser);
+            if (!removed) {
                 throw new LoginAlreadyUsedException();
             }
         });
         userRepository.findOneByEmailIgnoreCase(userDTO.getEmail()).ifPresent(existingUser -> {
-            if (!existingUser.getActivated()) {
-                userRepository.delete(existingUser);
-            } else {
+            boolean removed = removeNonActivatedUser(existingUser);
+            if (!removed) {
                 throw new EmailAlreadyUsedException();
             }
         });
@@ -116,6 +114,13 @@ public class UserService {
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
+    }
+    private boolean removeNonActivatedUser(User existingUser){
+        if(existingUser.getActivated()) {
+             return false;
+        }
+        userRepository.delete(existingUser);
+        return true;
     }
 
     public User createUser(UserDTO userDTO) {
