@@ -30,8 +30,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         JhipsterMongodbSampleApplicationCoreModule,
         JhipsterMongodbSampleApplicationHomeModule,
         JhipsterMongodbSampleApplicationAccountModule,
-        JhipsterMongodbSampleApplicationEntityModule
         // jhipster-needle-angular-add-module JHipster will add new module here
+        JhipsterMongodbSampleApplicationEntityModule
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
     providers: [
