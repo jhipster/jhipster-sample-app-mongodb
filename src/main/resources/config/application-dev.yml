@@ -32,7 +32,8 @@ spring:
         livereload:
             enabled: false # we use Webpack dev server + BrowserSync for livereload
     jackson:
-        serialization.indent_output: true
+        serialization:
+            indent-output: true
     data:
         mongodb:
             uri: mongodb://localhost:27017
