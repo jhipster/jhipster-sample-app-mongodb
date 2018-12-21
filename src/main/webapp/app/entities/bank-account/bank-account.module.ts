@@ -3,27 +3,27 @@ import { RouterModule } from '@angular/router';
 
 import { JhipsterMongodbSampleApplicationSharedModule } from 'app/shared';
 import {
-  BankAccountComponent,
-  BankAccountDetailComponent,
-  BankAccountUpdateComponent,
-  BankAccountDeletePopupComponent,
-  BankAccountDeleteDialogComponent,
-  bankAccountRoute,
-  bankAccountPopupRoute
+    BankAccountComponent,
+    BankAccountDetailComponent,
+    BankAccountUpdateComponent,
+    BankAccountDeletePopupComponent,
+    BankAccountDeleteDialogComponent,
+    bankAccountRoute,
+    bankAccountPopupRoute
 } from './';
 
 const ENTITY_STATES = [...bankAccountRoute, ...bankAccountPopupRoute];
 
 @NgModule({
-  imports: [JhipsterMongodbSampleApplicationSharedModule, RouterModule.forChild(ENTITY_STATES)],
-  declarations: [
-    BankAccountComponent,
-    BankAccountDetailComponent,
-    BankAccountUpdateComponent,
-    BankAccountDeleteDialogComponent,
-    BankAccountDeletePopupComponent
-  ],
-  entryComponents: [BankAccountComponent, BankAccountUpdateComponent, BankAccountDeleteDialogComponent, BankAccountDeletePopupComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    imports: [JhipsterMongodbSampleApplicationSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    declarations: [
+        BankAccountComponent,
+        BankAccountDetailComponent,
+        BankAccountUpdateComponent,
+        BankAccountDeleteDialogComponent,
+        BankAccountDeletePopupComponent
+    ],
+    entryComponents: [BankAccountComponent, BankAccountUpdateComponent, BankAccountDeleteDialogComponent, BankAccountDeletePopupComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class JhipsterMongodbSampleApplicationBankAccountModule {}
