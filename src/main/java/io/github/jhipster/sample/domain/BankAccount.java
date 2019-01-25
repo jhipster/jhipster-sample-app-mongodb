@@ -1,5 +1,6 @@
 package io.github.jhipster.sample.domain;
 
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,7 +18,7 @@ import java.util.Objects;
 public class BankAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     private String id;
 
