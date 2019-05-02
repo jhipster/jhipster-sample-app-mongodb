@@ -5,27 +5,23 @@ import io.github.jhipster.sample.domain.User;
 import io.github.jhipster.sample.repository.UserRepository;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 /**
- * Test class for DomainUserDetailsService.
- *
- * @see DomainUserDetailsService
+ * Integrations tests for {@link DomainUserDetailsService}.
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = JhipsterMongodbSampleApplicationApp.class)
-public class DomainUserDetailsServiceIntTest {
+public class DomainUserDetailsServiceIT {
 
     private static final String USER_ONE_LOGIN = "test-user-one";
     private static final String USER_ONE_EMAIL = "test-user-one@localhost";
@@ -44,7 +40,7 @@ public class DomainUserDetailsServiceIntTest {
     private User userTwo;
     private User userThree;
 
-    @Before
+    @BeforeEach
     public void init() {
         userRepository.deleteAll();
 
@@ -114,9 +110,10 @@ public class DomainUserDetailsServiceIntTest {
         assertThat(userDetails.getUsername()).isEqualTo(USER_ONE_LOGIN);
     }
 
-    @Test(expected = UserNotActivatedException.class)
+    @Test
     public void assertThatUserNotActivatedExceptionIsThrownForNotActivatedUsers() {
-        domainUserDetailsService.loadUserByUsername(USER_THREE_LOGIN);
+        assertThatExceptionOfType(UserNotActivatedException.class).isThrownBy(
+            () -> domainUserDetailsService.loadUserByUsername(USER_THREE_LOGIN));
     }
 
 }

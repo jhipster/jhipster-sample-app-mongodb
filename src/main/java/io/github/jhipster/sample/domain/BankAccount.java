@@ -18,7 +18,7 @@ import java.util.Objects;
 public class BankAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     private String id;
 
@@ -61,19 +61,15 @@ public class BankAccount implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof BankAccount)) {
             return false;
         }
-        BankAccount bankAccount = (BankAccount) o;
-        if (bankAccount.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), bankAccount.getId());
+        return id != null && id.equals(((BankAccount) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

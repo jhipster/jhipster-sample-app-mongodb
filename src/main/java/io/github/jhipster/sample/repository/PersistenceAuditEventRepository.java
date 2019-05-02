@@ -9,7 +9,7 @@ import java.time.Instant;
 import java.util.List;
 
 /**
- * Spring Data MongoDB repository for the PersistentAuditEvent entity.
+ * Spring Data MongoDB repository for the {@link PersistentAuditEvent} entity.
  */
 public interface PersistenceAuditEventRepository extends MongoRepository<PersistentAuditEvent, String> {
 

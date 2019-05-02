@@ -5,10 +5,10 @@ import { JhipsterMongodbSampleApplicationAppModule } from './app.module';
 ProdConfig();
 
 if (module['hot']) {
-    module['hot'].accept();
+  module['hot'].accept();
 }
 
 platformBrowserDynamic()
-    .bootstrapModule(JhipsterMongodbSampleApplicationAppModule, { preserveWhitespaces: true })
-    .then(success => console.log(`Application started`))
-    .catch(err => console.error(err));
+  .bootstrapModule(JhipsterMongodbSampleApplicationAppModule, { preserveWhitespaces: true })
+  .then(success => console.log(`Application started`))
+  .catch(err => console.error(err));

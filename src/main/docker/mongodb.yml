@@ -1,8 +1,8 @@
 version: '2'
 services:
-    jhipstermongodbsampleapplication-mongodb:
-        image: mongo:4.0.2
-        ports:
-            - "27017:27017"
-        # volumes:
-        #     - ~/volumes/jhipster/jhipsterMongodbSampleApplication/mongodb/:/data/db/
+  jhipstermongodbsampleapplication-mongodb:
+    image: mongo:4.0.9
+    ports:
+      - '27017:27017'
+    # volumes:
+    #     - ~/volumes/jhipster/jhipsterMongodbSampleApplication/mongodb/:/data/db/
