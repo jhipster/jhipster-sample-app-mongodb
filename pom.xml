@@ -47,7 +47,7 @@
 
         <!-- Plugin versions -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
-        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
         <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
         <!-- We can't go to 3.0.0-M2 as it has a regression. See https://issues.apache.org/jira/browse/MENFORCER-306 -->
@@ -207,7 +207,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-
             <exclusions>
                 <exclusion>
                     <groupId>junit</groupId>
@@ -455,7 +454,7 @@
                     <version>${jib-maven-plugin.version}</version>
                     <configuration>
                         <from>
-                            <image>openjdk:11-jre-slim-stretch</image>
+                            <image>adoptopenjdk/openjdk11:alpine-jre</image>
                         </from>
                         <to>
                             <image>jhipstermongodbsampleapplication:latest</image>
@@ -497,6 +496,18 @@
                     <executions>
                         <execution>
                             <id>enforce-versions</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>enforce-dependencyConvergence</id>
+                            <configuration>
+                                <rules>
+                                    <DependencyConvergence />
+                                </rules>
+                                <fail>false</fail>
+                            </configuration>
                             <goals>
                                 <goal>enforce</goal>
                             </goals>
@@ -571,7 +582,6 @@
                         <excludes>
                             <exclude>**/*IT*</exclude>
                             <exclude>**/*IntTest*</exclude>
-                            <exclude>**/*CucumberIT*</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -590,9 +600,6 @@
                             <include>**/*IT*</include>
                             <include>**/*IntTest*</include>
                         </includes>
-                        <excludes>
-                            <exclude>**/*CucumberIT*</exclude>
-                        </excludes>
                     </configuration>
                     <executions>
                         <execution>
