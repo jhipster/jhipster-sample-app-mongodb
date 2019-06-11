@@ -38,7 +38,7 @@ public class UserServiceIT {
 
     private static final String DEFAULT_IMAGEURL = "http://placehold.it/50x50";
 
-    private static final String DEFAULT_LANGKEY = "en";
+    private static final String DEFAULT_LANGKEY = "dummy";
 
     @Autowired
     private UserRepository userRepository;
@@ -132,17 +132,32 @@ public class UserServiceIT {
     }
 
     @Test
-    public void testFindNotActivatedUsersByCreationDateBefore() {
+    public void assertThatNotActivatedUsersWithNotNullActivationKeyCreatedBefore3DaysAreDeleted() {
+        Instant now = Instant.now();
+        user.setActivated(false);
+        user.setActivationKey(RandomStringUtils.random(20));
+        User dbUser = userRepository.save(user);
+        dbUser.setCreatedDate(now.minus(4, ChronoUnit.DAYS));
+        userRepository.save(user);
+        List<User> users = userRepository.findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(now.minus(3, ChronoUnit.DAYS));
+        assertThat(users).isNotEmpty();
+        userService.removeNotActivatedUsers();
+        users = userRepository.findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(now.minus(3, ChronoUnit.DAYS));
+        assertThat(users).isEmpty();
+    }
+
+    @Test
+    public void assertThatNotActivatedUsersWithNullActivationKeyCreatedBefore3DaysAreNotDeleted() {
         Instant now = Instant.now();
         user.setActivated(false);
         User dbUser = userRepository.save(user);
         dbUser.setCreatedDate(now.minus(4, ChronoUnit.DAYS));
         userRepository.save(user);
-        List<User> users = userRepository.findAllByActivatedIsFalseAndCreatedDateBefore(now.minus(3, ChronoUnit.DAYS));
-        assertThat(users).isNotEmpty();
-        userService.removeNotActivatedUsers();
-        users = userRepository.findAllByActivatedIsFalseAndCreatedDateBefore(now.minus(3, ChronoUnit.DAYS));
+        List<User> users = userRepository.findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(now.minus(3, ChronoUnit.DAYS));
         assertThat(users).isEmpty();
+        userService.removeNotActivatedUsers();
+        Optional<User> maybeDbUser = userRepository.findById(dbUser.getId());
+        assertThat(maybeDbUser).contains(dbUser);
     }
 
     @Test
@@ -156,21 +171,6 @@ public class UserServiceIT {
         assertThat(allManagedUsers.getContent().stream()
             .noneMatch(user -> Constants.ANONYMOUS_USER.equals(user.getLogin())))
             .isTrue();
-    }
-
-
-    @Test
-    public void testRemoveNotActivatedUsers() {
-
-        user.setActivated(false);
-        userRepository.save(user);
-        // Let the audit first set the creation date but then update it
-        user.setCreatedDate(Instant.now().minus(30, ChronoUnit.DAYS));
-        userRepository.save(user);
-
-        assertThat(userRepository.findOneByLogin(DEFAULT_LOGIN)).isPresent();
-        userService.removeNotActivatedUsers();
-        assertThat(userRepository.findOneByLogin(DEFAULT_LOGIN)).isNotPresent();
     }
 
 }

@@ -1,13 +1,8 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-  JhipsterMongodbSampleApplicationSharedLibsModule,
-  JhipsterMongodbSampleApplicationSharedCommonModule,
-  JhiLoginModalComponent,
-  HasAnyAuthorityDirective
-} from './';
+import { JhipsterMongodbSampleApplicationSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective } from './';
 
 @NgModule({
-  imports: [JhipsterMongodbSampleApplicationSharedLibsModule, JhipsterMongodbSampleApplicationSharedCommonModule],
+  imports: [JhipsterMongodbSampleApplicationSharedCommonModule],
   declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective],
   entryComponents: [JhiLoginModalComponent],
   exports: [JhipsterMongodbSampleApplicationSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
