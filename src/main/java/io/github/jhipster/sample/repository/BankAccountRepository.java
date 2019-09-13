@@ -1,5 +1,4 @@
 package io.github.jhipster.sample.repository;
-
 import io.github.jhipster.sample.domain.BankAccount;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
