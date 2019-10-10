@@ -8,6 +8,7 @@
             </span>
         </button>
     </h2>
+    <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
     <div class="alert alert-warning" *ngIf="bankAccounts?.length === 0">
@@ -17,10 +18,10 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="jhipsterMongodbSampleApplicationApp.bankAccount.name">Name</span></th>
-            <th><span jhiTranslate="jhipsterMongodbSampleApplicationApp.bankAccount.balance">Balance</span></th>
-            <th></th>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterMongodbSampleApplicationApp.bankAccount.name">Name</span></th>
+            <th scope="col" ><span jhiTranslate="jhipsterMongodbSampleApplicationApp.bankAccount.balance">Balance</span></th>
+            <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
