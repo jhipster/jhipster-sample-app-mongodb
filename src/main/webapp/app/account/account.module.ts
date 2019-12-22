@@ -24,4 +24,4 @@ import { accountState } from './account.route';
     SettingsComponent
   ]
 })
-export class JhipsterMongodbSampleApplicationAccountModule {}
+export class AccountModule {}
