@@ -16,8 +16,7 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [JhipsterMongodbSampleApplicationTestModule],
-        declarations: [BankAccountComponent],
-        providers: []
+        declarations: [BankAccountComponent]
       })
         .overrideTemplate(BankAccountComponent, '')
         .compileComponents();

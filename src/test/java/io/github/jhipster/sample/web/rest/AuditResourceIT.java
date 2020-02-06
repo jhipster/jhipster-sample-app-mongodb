@@ -51,11 +51,11 @@ public class AuditResourceIT {
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
-    @Qualifier("mvcConversionService")
-    private FormattingConversionService formattingConversionService;
+    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
 
     @Autowired
-    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
+    @Qualifier("mvcConversionService")
+    private FormattingConversionService formattingConversionService;
 
     private PersistentAuditEvent auditEvent;
 
@@ -70,7 +70,8 @@ public class AuditResourceIT {
         this.restAuditMockMvc = MockMvcBuilders.standaloneSetup(auditResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setConversionService(formattingConversionService)
-            .setMessageConverters(jacksonMessageConverter).build();
+            .setMessageConverters(jacksonMessageConverter)
+            .build();
     }
 
     @BeforeEach
@@ -90,7 +91,7 @@ public class AuditResourceIT {
         // Get all the audits
         restAuditMockMvc.perform(get("/management/audits"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].principal").value(hasItem(SAMPLE_PRINCIPAL)));
     }
 
@@ -102,7 +103,7 @@ public class AuditResourceIT {
         // Get the audit
         restAuditMockMvc.perform(get("/management/audits/{id}", auditEvent.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.principal").value(SAMPLE_PRINCIPAL));
     }
 
@@ -118,7 +119,7 @@ public class AuditResourceIT {
         // Get the audit
         restAuditMockMvc.perform(get("/management/audits?fromDate="+fromDate+"&toDate="+toDate))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].principal").value(hasItem(SAMPLE_PRINCIPAL)));
     }
 
@@ -134,7 +135,7 @@ public class AuditResourceIT {
         // Query audits but expect no results
         restAuditMockMvc.perform(get("/management/audits?fromDate=" + fromDate + "&toDate=" + toDate))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(header().string("X-Total-Count", "0"));
     }
 

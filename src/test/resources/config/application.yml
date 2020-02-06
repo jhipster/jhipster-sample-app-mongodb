@@ -16,6 +16,9 @@
 spring:
   application:
     name: jhipsterMongodbSampleApplication
+  jackson:
+    serialization:
+      write-durations-as-timestamps: false
   data:
     mongodb:
       host: localhost
