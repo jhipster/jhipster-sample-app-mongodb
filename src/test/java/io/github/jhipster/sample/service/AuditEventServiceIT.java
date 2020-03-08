@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Integration tests for {@link AuditEventService}.
  */
 @SpringBootTest(classes = JhipsterMongodbSampleApplicationApp.class)
-public class AuditEventServiceIT {
+public class AuditEventServiceIT  {
     @Autowired
     private AuditEventService auditEventService;
 

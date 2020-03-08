@@ -12,5 +12,4 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface BankAccountRepository extends MongoRepository<BankAccount, String> {
-
 }
