@@ -3,7 +3,6 @@ package io.github.jhipster.sample.repository;
 import io.github.jhipster.sample.domain.User;
 
 import org.springframework.data.domain.Page;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
@@ -27,8 +26,6 @@ public interface UserRepository extends MongoRepository<User, String> {
     Optional<User> findOneByEmailIgnoreCase(String email);
 
     Optional<User> findOneByLogin(String login);
-
-
 
     Page<User> findAllByLoginNot(Pageable pageable, String login);
 }

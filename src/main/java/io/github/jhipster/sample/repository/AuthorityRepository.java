@@ -1,6 +1,7 @@
 package io.github.jhipster.sample.repository;
 
 import io.github.jhipster.sample.domain.Authority;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
