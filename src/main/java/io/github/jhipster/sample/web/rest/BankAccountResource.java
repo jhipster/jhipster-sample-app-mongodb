@@ -112,7 +112,6 @@ public class BankAccountResource {
     @DeleteMapping("/bank-accounts/{id}")
     public ResponseEntity<Void> deleteBankAccount(@PathVariable String id) {
         log.debug("REST request to delete BankAccount : {}", id);
-
         bankAccountRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build();
     }
