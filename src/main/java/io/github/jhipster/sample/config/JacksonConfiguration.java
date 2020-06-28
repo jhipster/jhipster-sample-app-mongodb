@@ -29,7 +29,7 @@ public class JacksonConfiguration {
      * Module for serialization/deserialization of RFC7807 Problem.
      */
     @Bean
-    ProblemModule problemModule() {
+    public ProblemModule problemModule() {
         return new ProblemModule();
     }
 
@@ -37,7 +37,7 @@ public class JacksonConfiguration {
      * Module for serialization/deserialization of ConstraintViolationProblem.
      */
     @Bean
-    ConstraintViolationProblemModule constraintViolationProblemModule() {
+    public ConstraintViolationProblemModule constraintViolationProblemModule() {
         return new ConstraintViolationProblemModule();
     }
 }
