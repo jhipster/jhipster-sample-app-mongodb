@@ -227,6 +227,7 @@ public class UserResourceIT {
             .andExpect(jsonPath("$.[*].langKey").value(hasItem(DEFAULT_LANGKEY)));
     }
 
+
     @Test
     public void getUser() throws Exception {
         // Initialize the database
