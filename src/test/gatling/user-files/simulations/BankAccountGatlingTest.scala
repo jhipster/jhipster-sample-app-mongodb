@@ -71,7 +71,7 @@ class BankAccountGatlingTest extends Simulation {
             .post("/api/bank-accounts")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
-                "id":null
+                "id":"SAMPLE_TEXT"
                 , "name":"SAMPLE_TEXT"
                 , "balance":"0"
                 }""")).asJson

@@ -1,4 +1,4 @@
 /**
- * MongoDB database migrations using MongoBee.
+ * MongoDB database migrations using Mongock.
  */
 package io.github.jhipster.sample.config.dbmigrations;

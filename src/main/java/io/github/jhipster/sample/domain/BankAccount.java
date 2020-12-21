@@ -1,12 +1,11 @@
 package io.github.jhipster.sample.domain;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
+import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import javax.validation.constraints.*;
-
-import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * A BankAccount.
@@ -36,8 +35,18 @@ public class BankAccount implements Serializable {
         this.id = id;
     }
 
+    public BankAccount id(String id) {
+        this.id = id;
+        return this;
+    }
+
     public String getName() {
-        return name;
+        return this.name;
+    }
+
+    public BankAccount name(String name) {
+        this.name = name;
+        return this;
     }
 
     public void setName(String name) {
@@ -45,12 +54,18 @@ public class BankAccount implements Serializable {
     }
 
     public BigDecimal getBalance() {
-        return balance;
+        return this.balance;
+    }
+
+    public BankAccount balance(BigDecimal balance) {
+        this.balance = balance;
+        return this;
     }
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -66,7 +81,8 @@ public class BankAccount implements Serializable {
 
     @Override
     public int hashCode() {
-        return 31;
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        return getClass().hashCode();
     }
 
     // prettier-ignore

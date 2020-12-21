@@ -15,5 +15,7 @@
   ],
   "changelogDate": "20150805124838",
   "dto": "no",
-  "pagination": "no"
+  "pagination": "no",
+  "relationships": [],
+  "name": "BankAccount"
 }
