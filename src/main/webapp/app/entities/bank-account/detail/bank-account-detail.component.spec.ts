@@ -2,8 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
-import { BankAccount } from '../bank-account.model';
-
 import { BankAccountDetailComponent } from './bank-account-detail.component';
 
 describe('Component Tests', () => {
@@ -17,7 +15,7 @@ describe('Component Tests', () => {
         providers: [
           {
             provide: ActivatedRoute,
-            useValue: { data: of({ bankAccount: new BankAccount('123') }) },
+            useValue: { data: of({ bankAccount: { id: 'ABC' } }) },
           },
         ],
       })
@@ -33,7 +31,7 @@ describe('Component Tests', () => {
         comp.ngOnInit();
 
         // THEN
-        expect(comp.bankAccount).toEqual(jasmine.objectContaining({ id: '123' }));
+        expect(comp.bankAccount).toEqual(jasmine.objectContaining({ id: 'ABC' }));
       });
     });
   });

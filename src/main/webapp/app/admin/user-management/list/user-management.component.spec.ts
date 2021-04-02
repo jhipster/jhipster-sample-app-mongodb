@@ -59,7 +59,7 @@ describe('Component Tests', () => {
           spyOn(service, 'query').and.returnValue(
             of(
               new HttpResponse({
-                body: [new User('123')],
+                body: [new User('ABC')],
                 headers,
               })
             )
@@ -71,7 +71,7 @@ describe('Component Tests', () => {
 
           // THEN
           expect(service.query).toHaveBeenCalled();
-          expect(comp.users?.[0]).toEqual(jasmine.objectContaining({ id: '123' }));
+          expect(comp.users?.[0]).toEqual(jasmine.objectContaining({ id: 'ABC' }));
         })
       ));
     });
@@ -82,7 +82,7 @@ describe('Component Tests', () => {
         fakeAsync(() => {
           // GIVEN
           const headers = new HttpHeaders().append('link', 'link;link');
-          const user = new User('123');
+          const user = new User('ABC');
           spyOn(service, 'query').and.returnValue(
             of(
               new HttpResponse({
@@ -100,7 +100,7 @@ describe('Component Tests', () => {
           // THEN
           expect(service.update).toHaveBeenCalledWith({ ...user, activated: true });
           expect(service.query).toHaveBeenCalled();
-          expect(comp.users?.[0]).toEqual(jasmine.objectContaining({ id: '123' }));
+          expect(comp.users?.[0]).toEqual(jasmine.objectContaining({ id: 'ABC' }));
         })
       ));
     });
