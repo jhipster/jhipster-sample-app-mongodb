@@ -77,7 +77,7 @@ describe('Service Tests', () => {
       it('should partial update a BankAccount', () => {
         const patchObject = Object.assign(
           {
-            balance: 1,
+            name: 'BBBBBB',
           },
           new BankAccount()
         );
@@ -150,7 +150,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique BankAccount to an array', () => {
-          const bankAccountArray: IBankAccount[] = [{ id: 'ABC' }, { id: 'CBA' }, { id: 'Drives TCP synergize' }];
+          const bankAccountArray: IBankAccount[] = [{ id: 'ABC' }, { id: 'CBA' }, { id: '411a4ca3-9ed9-4093-a6bd-b1ff57a81565' }];
           const bankAccountCollection: IBankAccount[] = [{ id: 'ABC' }];
           expectedResult = service.addBankAccountToCollectionIfMissing(bankAccountCollection, ...bankAccountArray);
           expect(expectedResult).toHaveLength(3);
@@ -170,6 +170,12 @@ describe('Service Tests', () => {
           expectedResult = service.addBankAccountToCollectionIfMissing([], null, bankAccount, undefined);
           expect(expectedResult).toHaveLength(1);
           expect(expectedResult).toContain(bankAccount);
+        });
+
+        it('should return initial array if no BankAccount is added', () => {
+          const bankAccountCollection: IBankAccount[] = [{ id: 'ABC' }];
+          expectedResult = service.addBankAccountToCollectionIfMissing(bankAccountCollection, undefined, null);
+          expect(expectedResult).toEqual(bankAccountCollection);
         });
       });
     });

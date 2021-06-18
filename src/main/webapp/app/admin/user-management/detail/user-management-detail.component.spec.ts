@@ -37,14 +37,12 @@ describe('Component Tests', () => {
 
     describe('OnInit', () => {
       it('Should call load all on init', () => {
-        // GIVEN
-
         // WHEN
         comp.ngOnInit();
 
         // THEN
         expect(comp.user).toEqual(
-          jasmine.objectContaining({
+          expect.objectContaining({
             id: 'ABC',
             login: 'user',
             firstName: 'first',
