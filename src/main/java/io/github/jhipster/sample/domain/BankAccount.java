@@ -27,17 +27,18 @@ public class BankAccount implements Serializable {
     private BigDecimal balance;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
     public String getId() {
-        return id;
+        return this.id;
+    }
+
+    public BankAccount id(String id) {
+        this.setId(id);
+        return this;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public BankAccount id(String id) {
-        this.id = id;
-        return this;
     }
 
     public String getName() {
@@ -45,7 +46,7 @@ public class BankAccount implements Serializable {
     }
 
     public BankAccount name(String name) {
-        this.name = name;
+        this.setName(name);
         return this;
     }
 
@@ -58,7 +59,7 @@ public class BankAccount implements Serializable {
     }
 
     public BankAccount balance(BigDecimal balance) {
-        this.balance = balance;
+        this.setBalance(balance);
         return this;
     }
 
