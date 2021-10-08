@@ -10,6 +10,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Jhipster Mongodb Sample Application</name>
+    <description>Description for jhipsterMongodbSampleApplication</description>
 
     <repositories>
         <!-- jhipster-needle-maven-repository -->
@@ -26,7 +27,7 @@
         <maven.version>3.3.9</maven.version>
         <java.version>11</java.version>
         <node.version>v14.17.6</node.version>
-        <npm.version>7.23.0</npm.version>
+        <npm.version>7.24.2</npm.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -42,10 +43,10 @@
         <profile.tls />
 
         <!-- Dependency versions -->
-        <jhipster-dependencies.version>7.2.0</jhipster-dependencies.version>
+        <jhipster-dependencies.version>7.3.0</jhipster-dependencies.version>
         <!-- The spring-boot version should match the one managed by
         https://mvnrepository.com/artifact/tech.jhipster/jhipster-dependencies/${jhipster-dependencies.version} -->
-        <spring-boot.version>2.5.4</spring-boot.version>
+        <spring-boot.version>2.5.5</spring-boot.version>
         <archunit-junit5.version>0.21.0</archunit-junit5.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <!-- Plugin versions -->
@@ -602,8 +603,8 @@
                                 <version>[${maven.version},)</version>
                             </requireMavenVersion>
                             <requireJavaVersion>
-                                <message>You are running an incompatible version of Java. JHipster supports JDK 8 to 16.</message>
-                                <version>[1.8,17)</version>
+                                <message>You are running an incompatible version of Java. JHipster supports JDK 8 to 17.</message>
+                                <version>[1.8,18)</version>
                             </requireJavaVersion>
                         </rules>
                     </configuration>
