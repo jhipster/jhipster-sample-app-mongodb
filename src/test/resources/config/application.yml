@@ -14,7 +14,7 @@
 # ===================================================================
 
 mongock:
-  change-logs-scan-package:
+  migration-scan-package:
     - io.github.jhipster.sample.config.dbmigrations
   mongo-db:
     read-concern: local
@@ -28,14 +28,14 @@ spring:
     serialization:
       write-durations-as-timestamps: false
   data:
-    mongodb:
-      host: localhost
-      port: 0
-      database: jhipsterMongodbSampleApplication
   mail:
     host: localhost
   main:
     allow-bean-definition-overriding: true
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   messages:
     basename: i18n/messages
   task:

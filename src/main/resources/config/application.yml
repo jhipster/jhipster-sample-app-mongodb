@@ -76,7 +76,7 @@ management:
             enabled: true
 
 mongock:
-  change-logs-scan-package:
+  migration-scan-package:
     - io.github.jhipster.sample.config.dbmigrations
 
 spring:
@@ -99,6 +99,10 @@ spring:
     basename: i18n/messages
   main:
     allow-bean-definition-overriding: true
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   task:
     execution:
       thread-name-prefix: jhipster-mongodb-sample-application-task-

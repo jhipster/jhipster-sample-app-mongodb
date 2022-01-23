@@ -1,37 +1,79 @@
 package io.github.jhipster.sample.config.dbmigrations;
 
-import com.github.cloudyrock.mongock.ChangeLog;
-import com.github.cloudyrock.mongock.ChangeSet;
-import com.github.cloudyrock.mongock.driver.mongodb.springdata.v3.decorator.impl.MongockTemplate;
 import io.github.jhipster.sample.config.Constants;
 import io.github.jhipster.sample.domain.Authority;
 import io.github.jhipster.sample.domain.User;
 import io.github.jhipster.sample.security.AuthoritiesConstants;
+import io.mongock.api.annotations.ChangeUnit;
+import io.mongock.api.annotations.Execution;
+import io.mongock.api.annotations.RollbackExecution;
 import java.time.Instant;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 /**
  * Creates the initial database setup.
  */
-@ChangeLog(order = "001")
+@ChangeUnit(id = "users-initialization", order = "001")
 public class InitialSetupMigration {
 
-    @ChangeSet(order = "01", author = "initiator", id = "01-addAuthorities")
-    public void addAuthorities(MongockTemplate mongoTemplate) {
-        Authority adminAuthority = new Authority();
-        adminAuthority.setName(AuthoritiesConstants.ADMIN);
-        Authority userAuthority = new Authority();
-        userAuthority.setName(AuthoritiesConstants.USER);
-        mongoTemplate.save(adminAuthority);
-        mongoTemplate.save(userAuthority);
+    private final MongoTemplate template;
+
+    public InitialSetupMigration(MongoTemplate template) {
+        this.template = template;
     }
 
-    @ChangeSet(order = "02", author = "initiator", id = "02-addUsers")
-    public void addUsers(MongockTemplate mongoTemplate) {
-        Authority adminAuthority = new Authority();
-        adminAuthority.setName(AuthoritiesConstants.ADMIN);
-        Authority userAuthority = new Authority();
-        userAuthority.setName(AuthoritiesConstants.USER);
+    @Execution
+    public void changeSet() {
+        Authority userAuthority = createUserAuthority();
+        userAuthority = template.save(userAuthority);
+        Authority adminAuthority = createAdminAuthority();
+        adminAuthority = template.save(adminAuthority);
+        addUsers(userAuthority, adminAuthority);
+    }
 
+    @RollbackExecution
+    public void rollback() {}
+
+    private Authority createAuthority(String authority) {
+        Authority adminAuthority = new Authority();
+        adminAuthority.setName(authority);
+        return adminAuthority;
+    }
+
+    private Authority createAdminAuthority() {
+        Authority adminAuthority = createAuthority(AuthoritiesConstants.ADMIN);
+        return adminAuthority;
+    }
+
+    private Authority createUserAuthority() {
+        Authority userAuthority = createAuthority(AuthoritiesConstants.USER);
+        return userAuthority;
+    }
+
+    private void addUsers(Authority userAuthority, Authority adminAuthority) {
+        User user = createUser(userAuthority);
+        template.save(user);
+        User admin = createAdmin(adminAuthority, userAuthority);
+        template.save(admin);
+    }
+
+    private User createUser(Authority userAuthority) {
+        User userUser = new User();
+        userUser.setId("user-2");
+        userUser.setLogin("user");
+        userUser.setPassword("$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K");
+        userUser.setFirstName("");
+        userUser.setLastName("User");
+        userUser.setEmail("user@localhost");
+        userUser.setActivated(true);
+        userUser.setLangKey("en");
+        userUser.setCreatedBy(Constants.SYSTEM);
+        userUser.setCreatedDate(Instant.now());
+        userUser.getAuthorities().add(userAuthority);
+        return userUser;
+    }
+
+    private User createAdmin(Authority adminAuthority, Authority userAuthority) {
         User adminUser = new User();
         adminUser.setId("user-1");
         adminUser.setLogin("admin");
@@ -45,20 +87,6 @@ public class InitialSetupMigration {
         adminUser.setCreatedDate(Instant.now());
         adminUser.getAuthorities().add(adminAuthority);
         adminUser.getAuthorities().add(userAuthority);
-        mongoTemplate.save(adminUser);
-
-        User userUser = new User();
-        userUser.setId("user-2");
-        userUser.setLogin("user");
-        userUser.setPassword("$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K");
-        userUser.setFirstName("");
-        userUser.setLastName("User");
-        userUser.setEmail("user@localhost");
-        userUser.setActivated(true);
-        userUser.setLangKey("en");
-        userUser.setCreatedBy(Constants.SYSTEM);
-        userUser.setCreatedDate(Instant.now());
-        userUser.getAuthorities().add(userAuthority);
-        mongoTemplate.save(userUser);
+        return adminUser;
     }
 }

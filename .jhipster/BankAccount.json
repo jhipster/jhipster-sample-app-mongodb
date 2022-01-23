@@ -1,4 +1,6 @@
 {
+  "changelogDate": "20150805124838",
+  "dto": "no",
   "fields": [
     {
       "fieldId": 1,
@@ -13,9 +15,7 @@
       "fieldValidateRules": ["required"]
     }
   ],
-  "changelogDate": "20150805124838",
-  "dto": "no",
+  "name": "BankAccount",
   "pagination": "no",
-  "relationships": [],
-  "name": "BankAccount"
+  "relationships": []
 }
