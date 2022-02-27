@@ -16,7 +16,7 @@ public class MongoDbTestContainerExtension implements BeforeAllCallback {
     @Override
     public void beforeAll(ExtensionContext context) {
         if (null == THREAD_CONTAINER.get()) {
-            MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:4.4.11"))
+            MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:4.4.12"))
                 .withReuse(true)
                 .withTmpFs(Collections.singletonMap("/testtmpfs", "rw"))
                 .withCommand(
