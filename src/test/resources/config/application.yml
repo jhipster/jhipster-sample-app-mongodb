@@ -24,6 +24,7 @@ mongock:
 spring:
   application:
     name: jhipsterMongodbSampleApplication
+
   jackson:
     serialization:
       write-durations-as-timestamps: false
@@ -32,7 +33,6 @@ spring:
     host: localhost
   main:
     allow-bean-definition-overriding: true
-    allow-circular-references: true
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -48,7 +48,7 @@ spring:
     scheduling:
       thread-name-prefix: jhipster-mongodb-sample-application-scheduling-
       pool:
-        size: 1
+        size: 20
   thymeleaf:
     mode: HTML
 
@@ -61,7 +61,6 @@ server:
 #
 # Full reference is available at: https://www.jhipster.tech/common-application-properties/
 # ===================================================================
-
 jhipster:
   clientApp:
     name: 'jhipsterMongodbSampleApplicationApp'

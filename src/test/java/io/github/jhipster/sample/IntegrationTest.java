@@ -1,12 +1,11 @@
 package io.github.jhipster.sample;
 
 import io.github.jhipster.sample.JhipsterMongodbSampleApplicationApp;
-import io.github.jhipster.sample.MongoDbTestContainerExtension;
+import io.github.jhipster.sample.config.EmbeddedMongo;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
@@ -15,6 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @SpringBootTest(classes = JhipsterMongodbSampleApplicationApp.class)
-@ExtendWith(MongoDbTestContainerExtension.class)
+@EmbeddedMongo
 public @interface IntegrationTest {
 }
