@@ -15,7 +15,7 @@ services:
     ports:
       - 127.0.0.1:8080:8080
   jhipstermongodbsampleapplication-mongodb:
-    image: mongo:4.4.14
+    image: mongo:4.4.15
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:

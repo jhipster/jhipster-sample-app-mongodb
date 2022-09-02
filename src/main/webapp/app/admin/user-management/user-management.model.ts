@@ -1,5 +1,5 @@
 export interface IUser {
-  id?: string | null;
+  id: string | null;
   login?: string;
   firstName?: string | null;
   lastName?: string | null;
@@ -15,7 +15,7 @@ export interface IUser {
 
 export class User implements IUser {
   constructor(
-    public id?: string | null,
+    public id: string | null,
     public login?: string,
     public firstName?: string | null,
     public lastName?: string | null,

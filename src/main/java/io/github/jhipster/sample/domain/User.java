@@ -20,7 +20,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
  * A user.
  */
 @org.springframework.data.mongodb.core.mapping.Document(collection = "jhi_user")
-public class User extends AbstractAuditingEntity implements Serializable {
+public class User extends AbstractAuditingEntity<String> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

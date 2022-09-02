@@ -175,7 +175,7 @@ class BankAccountResourceIT {
     }
 
     @Test
-    void putNewBankAccount() throws Exception {
+    void putExistingBankAccount() throws Exception {
         // Initialize the database
         bankAccountRepository.save(bankAccount);
 

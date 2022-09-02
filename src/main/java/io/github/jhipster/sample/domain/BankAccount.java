@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
  * A BankAccount.
  */
 @Document(collection = "bank_account")
+@SuppressWarnings("common-java:DuplicatedBlocks")
 public class BankAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
