@@ -1,6 +1,7 @@
 {
   "changelogDate": "20150805124838",
   "dto": "no",
+  "entityTableName": "bank_account",
   "fields": [
     {
       "fieldId": 1,
@@ -17,5 +18,6 @@
   ],
   "name": "BankAccount",
   "pagination": "no",
-  "relationships": []
+  "relationships": [],
+  "searchEngine": "no"
 }
