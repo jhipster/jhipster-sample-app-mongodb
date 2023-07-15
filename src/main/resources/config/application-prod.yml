@@ -33,8 +33,7 @@ spring:
       enabled: false
   data:
     mongodb:
-      uri: mongodb://localhost:27017
-      database: jhipsterMongodbSampleApplication
+      uri: mongodb://localhost:27017/jhipsterMongodbSampleApplication
   mail:
     host: localhost
     port: 25
