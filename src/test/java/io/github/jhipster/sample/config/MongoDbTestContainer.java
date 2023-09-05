@@ -28,7 +28,7 @@ public class MongoDbTestContainer implements InitializingBean, DisposableBean {
     public void afterPropertiesSet() {
         if (null == mongodbContainer) {
             mongodbContainer =
-                new MongoDBContainer("mongo:4.4.15")
+                new MongoDBContainer("mongo:7.0.0")
                     .withTmpFs(Collections.singletonMap("/testtmpfs", "rw"))
                     /* .withCommand(
                     "--nojournal --wiredTigerCacheSizeGB 0.25 --wiredTigerCollectionBlockCompressor none --slowOpSampleRate 0 --setParameter ttlMonitorEnabled=false --setParameter diagnosticDataCollectionEnabled=false --setParameter logicalSessionRefreshMillis=6000000 --setParameter enableFlowControl=false --setParameter oplogFetcherUsesExhaust=false --setParameter disableResumableRangeDeleter=true --setParameter enableShardedIndexConsistencyCheck=false --setParameter enableFinerGrainedCatalogCacheRefresh=false --setParameter readHedgingMode=off --setParameter loadRoutingTableOnStartup=false --setParameter rangeDeleterBatchDelayMS=2000000 --setParameter skipShardingConfigurationChecks=true --setParameter syncdelay=3600"
