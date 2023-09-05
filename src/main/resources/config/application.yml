@@ -30,16 +30,7 @@ management:
       base-path: /management
       exposure:
         include:
-          - configprops
-          - env
-          - health
-          - info
-          - jhimetrics
-          - jhiopenapigroups
-          - logfile
-          - loggers
-          - prometheus
-          - threaddump
+          ['configprops', 'env', 'health', 'info', 'jhimetrics', 'jhiopenapigroups', 'logfile', 'loggers', 'prometheus', 'threaddump']
   endpoint:
     health:
       show-details: when_authorized
@@ -61,9 +52,10 @@ management:
   health:
     mail:
       enabled: false # When using the MailService, configure an SMTP server and set this to true
-  prometheus:
-    metrics:
-      export:
+  metrics:
+    export:
+      # Prometheus is the default metrics backend
+      prometheus:
         enabled: true
         step: 60
     enable:
@@ -110,8 +102,8 @@ spring:
   main:
     allow-bean-definition-overriding: true
   mvc:
-    problemdetails:
-      enabled: true
+    pathmatch:
+      matching-strategy: ant_path_matcher
   task:
     execution:
       thread-name-prefix: jhipster-mongodb-sample-application-task-

@@ -20,7 +20,6 @@ mongock:
     read-concern: local
     write-concern:
       journal: false
-      w: 'majority'
 
 spring:
   application:
@@ -32,6 +31,9 @@ spring:
     host: localhost
   main:
     allow-bean-definition-overriding: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   messages:
     basename: i18n/messages
   task:
@@ -70,7 +72,7 @@ jhipster:
       enabled: false
       host: localhost
       port: 5000
-      ring-buffer-size: 512
+      queue-size: 512
   security:
     authentication:
       jwt:
@@ -78,7 +80,6 @@ jhipster:
         base64-secret: bXktc2VjcmV0LWtleS13aGljaC1zaG91bGQtYmUtY2hhbmdlZC1pbi1wcm9kdWN0aW9uLWFuZC1iZS1iYXNlNjQtZW5jb2RlZAo=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
-        token-validity-in-seconds-for-remember-me: 86400
 
 # ===================================================================
 # Application specific properties

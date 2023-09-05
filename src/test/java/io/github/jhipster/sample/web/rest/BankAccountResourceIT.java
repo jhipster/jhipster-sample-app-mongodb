@@ -182,7 +182,7 @@ class BankAccountResourceIT {
         int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
 
         // Update the bankAccount
-        BankAccount updatedBankAccount = bankAccountRepository.findById(bankAccount.getId()).orElseThrow();
+        BankAccount updatedBankAccount = bankAccountRepository.findById(bankAccount.getId()).get();
         updatedBankAccount.name(UPDATED_NAME).balance(UPDATED_BALANCE);
 
         restBankAccountMockMvc
