@@ -22,7 +22,7 @@ import tech.jhipster.web.util.ResponseUtil;
  * REST controller for managing {@link io.github.jhipster.sample.domain.BankAccount}.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/bank-accounts")
 public class BankAccountResource {
 
     private final Logger log = LoggerFactory.getLogger(BankAccountResource.class);
@@ -45,7 +45,7 @@ public class BankAccountResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new bankAccount, or with status {@code 400 (Bad Request)} if the bankAccount has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/bank-accounts")
+    @PostMapping("")
     public ResponseEntity<BankAccount> createBankAccount(@Valid @RequestBody BankAccount bankAccount) throws URISyntaxException {
         log.debug("REST request to save BankAccount : {}", bankAccount);
         if (bankAccount.getId() != null) {
@@ -68,7 +68,7 @@ public class BankAccountResource {
      * or with status {@code 500 (Internal Server Error)} if the bankAccount couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/bank-accounts/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<BankAccount> updateBankAccount(
         @PathVariable(value = "id", required = false) final String id,
         @Valid @RequestBody BankAccount bankAccount
@@ -103,7 +103,7 @@ public class BankAccountResource {
      * or with status {@code 500 (Internal Server Error)} if the bankAccount couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PatchMapping(value = "/bank-accounts/{id}", consumes = { "application/json", "application/merge-patch+json" })
+    @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<BankAccount> partialUpdateBankAccount(
         @PathVariable(value = "id", required = false) final String id,
         @NotNull @RequestBody BankAccount bankAccount
@@ -145,7 +145,7 @@ public class BankAccountResource {
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of bankAccounts in body.
      */
-    @GetMapping("/bank-accounts")
+    @GetMapping("")
     public List<BankAccount> getAllBankAccounts() {
         log.debug("REST request to get all BankAccounts");
         return bankAccountRepository.findAll();
@@ -157,7 +157,7 @@ public class BankAccountResource {
      * @param id the id of the bankAccount to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the bankAccount, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/bank-accounts/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<BankAccount> getBankAccount(@PathVariable String id) {
         log.debug("REST request to get BankAccount : {}", id);
         Optional<BankAccount> bankAccount = bankAccountRepository.findById(id);
@@ -170,7 +170,7 @@ public class BankAccountResource {
      * @param id the id of the bankAccount to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/bank-accounts/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBankAccount(@PathVariable String id) {
         log.debug("REST request to delete BankAccount : {}", id);
         bankAccountRepository.deleteById(id);
