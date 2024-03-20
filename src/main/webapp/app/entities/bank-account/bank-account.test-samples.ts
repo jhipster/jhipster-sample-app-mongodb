@@ -1,26 +1,26 @@
 import { IBankAccount, NewBankAccount } from './bank-account.model';
 
 export const sampleWithRequiredData: IBankAccount = {
-  id: '7ce4441b-e7b4-4e98-9953-f948dd7254ed',
-  name: 'tandem molding late',
-  balance: 4833.89,
+  id: '782ea7e3-0be1-4845-9243-8117c5003569',
+  name: 'finally fester',
+  balance: 13506.38,
 };
 
 export const sampleWithPartialData: IBankAccount = {
-  id: 'e0cf5fee-35b5-449b-a00d-611cf5d00b73',
-  name: 'wet',
-  balance: 9345.38,
+  id: '9c5cac34-7166-499f-9f2a-20d9a8256f83',
+  name: 'towards instead',
+  balance: 28296.68,
 };
 
 export const sampleWithFullData: IBankAccount = {
-  id: '2baa9ee4-04ab-4f4b-abd5-e331ff3bbf39',
-  name: 'eager than than',
-  balance: 14971.95,
+  id: '56a1a1e7-809d-4279-aad9-389084f71282',
+  name: 'indeed subsidise',
+  balance: 2056.35,
 };
 
 export const sampleWithNewData: NewBankAccount = {
-  name: 'champion',
-  balance: 7304.66,
+  name: 'jaggedly unless',
+  balance: 10627.09,
   id: null,
 };
 

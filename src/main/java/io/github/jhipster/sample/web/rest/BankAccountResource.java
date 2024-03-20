@@ -51,11 +51,10 @@ public class BankAccountResource {
         if (bankAccount.getId() != null) {
             throw new BadRequestAlertException("A new bankAccount cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        BankAccount result = bankAccountRepository.save(bankAccount);
-        return ResponseEntity
-            .created(new URI("/api/bank-accounts/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId()))
-            .body(result);
+        bankAccount = bankAccountRepository.save(bankAccount);
+        return ResponseEntity.created(new URI("/api/bank-accounts/" + bankAccount.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, bankAccount.getId()))
+            .body(bankAccount);
     }
 
     /**
@@ -85,11 +84,10 @@ public class BankAccountResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        BankAccount result = bankAccountRepository.save(bankAccount);
-        return ResponseEntity
-            .ok()
+        bankAccount = bankAccountRepository.save(bankAccount);
+        return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, bankAccount.getId()))
-            .body(result);
+            .body(bankAccount);
     }
 
     /**

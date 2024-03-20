@@ -67,7 +67,7 @@ describe('User Management Component', () => {
 
         // THEN
         expect(service.query).toHaveBeenCalled();
-        expect(comp.users?.[0]).toEqual(expect.objectContaining({ id: 'ABC' }));
+        expect(comp.users()?.[0]).toEqual(expect.objectContaining({ id: 'ABC' }));
       }),
     ));
   });
@@ -96,7 +96,7 @@ describe('User Management Component', () => {
         // THEN
         expect(service.update).toHaveBeenCalledWith({ ...user, activated: true });
         expect(service.query).toHaveBeenCalled();
-        expect(comp.users?.[0]).toEqual(expect.objectContaining({ id: 'ABC' }));
+        expect(comp.users()?.[0]).toEqual(expect.objectContaining({ id: 'ABC' }));
       }),
     ));
   });

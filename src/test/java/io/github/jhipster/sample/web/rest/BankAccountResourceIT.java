@@ -1,16 +1,18 @@
 package io.github.jhipster.sample.web.rest;
 
+import static io.github.jhipster.sample.domain.BankAccountAsserts.*;
+import static io.github.jhipster.sample.web.rest.TestUtil.createUpdateProxyForBean;
 import static io.github.jhipster.sample.web.rest.TestUtil.sameNumber;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.jhipster.sample.IntegrationTest;
 import io.github.jhipster.sample.domain.BankAccount;
 import io.github.jhipster.sample.repository.BankAccountRepository;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,6 +38,9 @@ class BankAccountResourceIT {
 
     private static final String ENTITY_API_URL = "/api/bank-accounts";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
+
+    @Autowired
+    private ObjectMapper om;
 
     @Autowired
     private BankAccountRepository bankAccountRepository;
@@ -75,18 +80,21 @@ class BankAccountResourceIT {
 
     @Test
     void createBankAccount() throws Exception {
-        int databaseSizeBeforeCreate = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeCreate = getRepositoryCount();
         // Create the BankAccount
-        restBankAccountMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(bankAccount)))
-            .andExpect(status().isCreated());
+        var returnedBankAccount = om.readValue(
+            restBankAccountMockMvc
+                .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(bankAccount)))
+                .andExpect(status().isCreated())
+                .andReturn()
+                .getResponse()
+                .getContentAsString(),
+            BankAccount.class
+        );
 
         // Validate the BankAccount in the database
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeCreate + 1);
-        BankAccount testBankAccount = bankAccountList.get(bankAccountList.size() - 1);
-        assertThat(testBankAccount.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testBankAccount.getBalance()).isEqualByComparingTo(DEFAULT_BALANCE);
+        assertIncrementedRepositoryCount(databaseSizeBeforeCreate);
+        assertBankAccountUpdatableFieldsEquals(returnedBankAccount, getPersistedBankAccount(returnedBankAccount));
     }
 
     @Test
@@ -94,48 +102,45 @@ class BankAccountResourceIT {
         // Create the BankAccount with an existing ID
         bankAccount.setId("existing_id");
 
-        int databaseSizeBeforeCreate = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeCreate = getRepositoryCount();
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restBankAccountMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(bankAccount)))
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(bankAccount)))
             .andExpect(status().isBadRequest());
 
         // Validate the BankAccount in the database
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeCreate);
+        assertSameRepositoryCount(databaseSizeBeforeCreate);
     }
 
     @Test
     void checkNameIsRequired() throws Exception {
-        int databaseSizeBeforeTest = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
         bankAccount.setName(null);
 
         // Create the BankAccount, which fails.
 
         restBankAccountMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(bankAccount)))
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(bankAccount)))
             .andExpect(status().isBadRequest());
 
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeTest);
+        assertSameRepositoryCount(databaseSizeBeforeTest);
     }
 
     @Test
     void checkBalanceIsRequired() throws Exception {
-        int databaseSizeBeforeTest = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
         bankAccount.setBalance(null);
 
         // Create the BankAccount, which fails.
 
         restBankAccountMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(bankAccount)))
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(bankAccount)))
             .andExpect(status().isBadRequest());
 
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeTest);
+        assertSameRepositoryCount(databaseSizeBeforeTest);
     }
 
     @Test
@@ -179,7 +184,7 @@ class BankAccountResourceIT {
         // Initialize the database
         bankAccountRepository.save(bankAccount);
 
-        int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeUpdate = getRepositoryCount();
 
         // Update the bankAccount
         BankAccount updatedBankAccount = bankAccountRepository.findById(bankAccount.getId()).orElseThrow();
@@ -189,21 +194,18 @@ class BankAccountResourceIT {
             .perform(
                 put(ENTITY_API_URL_ID, updatedBankAccount.getId())
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(TestUtil.convertObjectToJsonBytes(updatedBankAccount))
+                    .content(om.writeValueAsBytes(updatedBankAccount))
             )
             .andExpect(status().isOk());
 
         // Validate the BankAccount in the database
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeUpdate);
-        BankAccount testBankAccount = bankAccountList.get(bankAccountList.size() - 1);
-        assertThat(testBankAccount.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testBankAccount.getBalance()).isEqualByComparingTo(UPDATED_BALANCE);
+        assertSameRepositoryCount(databaseSizeBeforeUpdate);
+        assertPersistedBankAccountToMatchAllProperties(updatedBankAccount);
     }
 
     @Test
     void putNonExistingBankAccount() throws Exception {
-        int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeUpdate = getRepositoryCount();
         bankAccount.setId(UUID.randomUUID().toString());
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
@@ -211,18 +213,17 @@ class BankAccountResourceIT {
             .perform(
                 put(ENTITY_API_URL_ID, bankAccount.getId())
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(TestUtil.convertObjectToJsonBytes(bankAccount))
+                    .content(om.writeValueAsBytes(bankAccount))
             )
             .andExpect(status().isBadRequest());
 
         // Validate the BankAccount in the database
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeUpdate);
+        assertSameRepositoryCount(databaseSizeBeforeUpdate);
     }
 
     @Test
     void putWithIdMismatchBankAccount() throws Exception {
-        int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeUpdate = getRepositoryCount();
         bankAccount.setId(UUID.randomUUID().toString());
 
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
@@ -230,28 +231,26 @@ class BankAccountResourceIT {
             .perform(
                 put(ENTITY_API_URL_ID, UUID.randomUUID().toString())
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(TestUtil.convertObjectToJsonBytes(bankAccount))
+                    .content(om.writeValueAsBytes(bankAccount))
             )
             .andExpect(status().isBadRequest());
 
         // Validate the BankAccount in the database
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeUpdate);
+        assertSameRepositoryCount(databaseSizeBeforeUpdate);
     }
 
     @Test
     void putWithMissingIdPathParamBankAccount() throws Exception {
-        int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeUpdate = getRepositoryCount();
         bankAccount.setId(UUID.randomUUID().toString());
 
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
         restBankAccountMockMvc
-            .perform(put(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(bankAccount)))
+            .perform(put(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(bankAccount)))
             .andExpect(status().isMethodNotAllowed());
 
         // Validate the BankAccount in the database
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeUpdate);
+        assertSameRepositoryCount(databaseSizeBeforeUpdate);
     }
 
     @Test
@@ -259,28 +258,29 @@ class BankAccountResourceIT {
         // Initialize the database
         bankAccountRepository.save(bankAccount);
 
-        int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeUpdate = getRepositoryCount();
 
         // Update the bankAccount using partial update
         BankAccount partialUpdatedBankAccount = new BankAccount();
         partialUpdatedBankAccount.setId(bankAccount.getId());
 
-        partialUpdatedBankAccount.name(UPDATED_NAME).balance(UPDATED_BALANCE);
+        partialUpdatedBankAccount.balance(UPDATED_BALANCE);
 
         restBankAccountMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedBankAccount.getId())
                     .contentType("application/merge-patch+json")
-                    .content(TestUtil.convertObjectToJsonBytes(partialUpdatedBankAccount))
+                    .content(om.writeValueAsBytes(partialUpdatedBankAccount))
             )
             .andExpect(status().isOk());
 
         // Validate the BankAccount in the database
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeUpdate);
-        BankAccount testBankAccount = bankAccountList.get(bankAccountList.size() - 1);
-        assertThat(testBankAccount.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testBankAccount.getBalance()).isEqualByComparingTo(UPDATED_BALANCE);
+
+        assertSameRepositoryCount(databaseSizeBeforeUpdate);
+        assertBankAccountUpdatableFieldsEquals(
+            createUpdateProxyForBean(partialUpdatedBankAccount, bankAccount),
+            getPersistedBankAccount(bankAccount)
+        );
     }
 
     @Test
@@ -288,7 +288,7 @@ class BankAccountResourceIT {
         // Initialize the database
         bankAccountRepository.save(bankAccount);
 
-        int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeUpdate = getRepositoryCount();
 
         // Update the bankAccount using partial update
         BankAccount partialUpdatedBankAccount = new BankAccount();
@@ -300,21 +300,19 @@ class BankAccountResourceIT {
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedBankAccount.getId())
                     .contentType("application/merge-patch+json")
-                    .content(TestUtil.convertObjectToJsonBytes(partialUpdatedBankAccount))
+                    .content(om.writeValueAsBytes(partialUpdatedBankAccount))
             )
             .andExpect(status().isOk());
 
         // Validate the BankAccount in the database
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeUpdate);
-        BankAccount testBankAccount = bankAccountList.get(bankAccountList.size() - 1);
-        assertThat(testBankAccount.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testBankAccount.getBalance()).isEqualByComparingTo(UPDATED_BALANCE);
+
+        assertSameRepositoryCount(databaseSizeBeforeUpdate);
+        assertBankAccountUpdatableFieldsEquals(partialUpdatedBankAccount, getPersistedBankAccount(partialUpdatedBankAccount));
     }
 
     @Test
     void patchNonExistingBankAccount() throws Exception {
-        int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeUpdate = getRepositoryCount();
         bankAccount.setId(UUID.randomUUID().toString());
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
@@ -322,18 +320,17 @@ class BankAccountResourceIT {
             .perform(
                 patch(ENTITY_API_URL_ID, bankAccount.getId())
                     .contentType("application/merge-patch+json")
-                    .content(TestUtil.convertObjectToJsonBytes(bankAccount))
+                    .content(om.writeValueAsBytes(bankAccount))
             )
             .andExpect(status().isBadRequest());
 
         // Validate the BankAccount in the database
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeUpdate);
+        assertSameRepositoryCount(databaseSizeBeforeUpdate);
     }
 
     @Test
     void patchWithIdMismatchBankAccount() throws Exception {
-        int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeUpdate = getRepositoryCount();
         bankAccount.setId(UUID.randomUUID().toString());
 
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
@@ -341,30 +338,26 @@ class BankAccountResourceIT {
             .perform(
                 patch(ENTITY_API_URL_ID, UUID.randomUUID().toString())
                     .contentType("application/merge-patch+json")
-                    .content(TestUtil.convertObjectToJsonBytes(bankAccount))
+                    .content(om.writeValueAsBytes(bankAccount))
             )
             .andExpect(status().isBadRequest());
 
         // Validate the BankAccount in the database
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeUpdate);
+        assertSameRepositoryCount(databaseSizeBeforeUpdate);
     }
 
     @Test
     void patchWithMissingIdPathParamBankAccount() throws Exception {
-        int databaseSizeBeforeUpdate = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeUpdate = getRepositoryCount();
         bankAccount.setId(UUID.randomUUID().toString());
 
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
         restBankAccountMockMvc
-            .perform(
-                patch(ENTITY_API_URL).contentType("application/merge-patch+json").content(TestUtil.convertObjectToJsonBytes(bankAccount))
-            )
+            .perform(patch(ENTITY_API_URL).contentType("application/merge-patch+json").content(om.writeValueAsBytes(bankAccount)))
             .andExpect(status().isMethodNotAllowed());
 
         // Validate the BankAccount in the database
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeUpdate);
+        assertSameRepositoryCount(databaseSizeBeforeUpdate);
     }
 
     @Test
@@ -372,7 +365,7 @@ class BankAccountResourceIT {
         // Initialize the database
         bankAccountRepository.save(bankAccount);
 
-        int databaseSizeBeforeDelete = bankAccountRepository.findAll().size();
+        long databaseSizeBeforeDelete = getRepositoryCount();
 
         // Delete the bankAccount
         restBankAccountMockMvc
@@ -380,7 +373,34 @@ class BankAccountResourceIT {
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
-        List<BankAccount> bankAccountList = bankAccountRepository.findAll();
-        assertThat(bankAccountList).hasSize(databaseSizeBeforeDelete - 1);
+        assertDecrementedRepositoryCount(databaseSizeBeforeDelete);
+    }
+
+    protected long getRepositoryCount() {
+        return bankAccountRepository.count();
+    }
+
+    protected void assertIncrementedRepositoryCount(long countBefore) {
+        assertThat(countBefore + 1).isEqualTo(getRepositoryCount());
+    }
+
+    protected void assertDecrementedRepositoryCount(long countBefore) {
+        assertThat(countBefore - 1).isEqualTo(getRepositoryCount());
+    }
+
+    protected void assertSameRepositoryCount(long countBefore) {
+        assertThat(countBefore).isEqualTo(getRepositoryCount());
+    }
+
+    protected BankAccount getPersistedBankAccount(BankAccount bankAccount) {
+        return bankAccountRepository.findById(bankAccount.getId()).orElseThrow();
+    }
+
+    protected void assertPersistedBankAccountToMatchAllProperties(BankAccount expectedBankAccount) {
+        assertBankAccountAllPropertiesEquals(expectedBankAccount, getPersistedBankAccount(expectedBankAccount));
+    }
+
+    protected void assertPersistedBankAccountToMatchUpdatableProperties(BankAccount expectedBankAccount) {
+        assertBankAccountAllUpdatablePropertiesEquals(expectedBankAccount, getPersistedBankAccount(expectedBankAccount));
     }
 }
