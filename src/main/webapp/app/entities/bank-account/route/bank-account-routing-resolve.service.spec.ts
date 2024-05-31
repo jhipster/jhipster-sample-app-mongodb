@@ -52,7 +52,7 @@ describe('BankAccount routing resolve service', () => {
       });
 
       // THEN
-      expect(service.find).toBeCalledWith('ABC');
+      expect(service.find).toHaveBeenCalledWith('ABC');
       expect(resultBankAccount).toEqual({ id: 'ABC' });
     });
 
@@ -90,7 +90,7 @@ describe('BankAccount routing resolve service', () => {
       });
 
       // THEN
-      expect(service.find).toBeCalledWith('ABC');
+      expect(service.find).toHaveBeenCalledWith('ABC');
       expect(resultBankAccount).toEqual(undefined);
       expect(mockRouter.navigate).toHaveBeenCalledWith(['404']);
     });

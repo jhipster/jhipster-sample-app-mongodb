@@ -11,6 +11,7 @@ import io.github.jhipster.sample.IntegrationTest;
 import io.github.jhipster.sample.domain.Authority;
 import io.github.jhipster.sample.repository.AuthorityRepository;
 import java.util.UUID;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,8 @@ class AuthorityResourceIT {
 
     private Authority authority;
 
+    private Authority insertedAuthority;
+
     /**
      * Create an entity for this test.
      *
@@ -65,8 +68,15 @@ class AuthorityResourceIT {
 
     @BeforeEach
     public void initTest() {
-        authorityRepository.deleteAll();
         authority = createEntity();
+    }
+
+    @AfterEach
+    public void cleanup() {
+        if (insertedAuthority != null) {
+            authorityRepository.delete(insertedAuthority);
+            insertedAuthority = null;
+        }
     }
 
     @Test
@@ -86,12 +96,14 @@ class AuthorityResourceIT {
         // Validate the Authority in the database
         assertIncrementedRepositoryCount(databaseSizeBeforeCreate);
         assertAuthorityUpdatableFieldsEquals(returnedAuthority, getPersistedAuthority(returnedAuthority));
+
+        insertedAuthority = returnedAuthority;
     }
 
     @Test
     void createAuthorityWithExistingId() throws Exception {
         // Create the Authority with an existing ID
-        authorityRepository.save(authority);
+        insertedAuthority = authorityRepository.save(authority);
 
         long databaseSizeBeforeCreate = getRepositoryCount();
 
@@ -108,7 +120,7 @@ class AuthorityResourceIT {
     void getAllAuthorities() throws Exception {
         // Initialize the database
         authority.setName(UUID.randomUUID().toString());
-        authorityRepository.save(authority);
+        insertedAuthority = authorityRepository.save(authority);
 
         // Get all the authorityList
         restAuthorityMockMvc
@@ -122,7 +134,7 @@ class AuthorityResourceIT {
     void getAuthority() throws Exception {
         // Initialize the database
         authority.setName(UUID.randomUUID().toString());
-        authorityRepository.save(authority);
+        insertedAuthority = authorityRepository.save(authority);
 
         // Get the authority
         restAuthorityMockMvc
@@ -142,7 +154,7 @@ class AuthorityResourceIT {
     void deleteAuthority() throws Exception {
         // Initialize the database
         authority.setName(UUID.randomUUID().toString());
-        authorityRepository.save(authority);
+        insertedAuthority = authorityRepository.save(authority);
 
         long databaseSizeBeforeDelete = getRepositoryCount();
 

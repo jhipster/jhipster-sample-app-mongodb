@@ -14,6 +14,7 @@ import io.github.jhipster.sample.domain.BankAccount;
 import io.github.jhipster.sample.repository.BankAccountRepository;
 import java.math.BigDecimal;
 import java.util.UUID;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,8 @@ class BankAccountResourceIT {
 
     private BankAccount bankAccount;
 
+    private BankAccount insertedBankAccount;
+
     /**
      * Create an entity for this test.
      *
@@ -74,8 +77,15 @@ class BankAccountResourceIT {
 
     @BeforeEach
     public void initTest() {
-        bankAccountRepository.deleteAll();
         bankAccount = createEntity();
+    }
+
+    @AfterEach
+    public void cleanup() {
+        if (insertedBankAccount != null) {
+            bankAccountRepository.delete(insertedBankAccount);
+            insertedBankAccount = null;
+        }
     }
 
     @Test
@@ -95,6 +105,8 @@ class BankAccountResourceIT {
         // Validate the BankAccount in the database
         assertIncrementedRepositoryCount(databaseSizeBeforeCreate);
         assertBankAccountUpdatableFieldsEquals(returnedBankAccount, getPersistedBankAccount(returnedBankAccount));
+
+        insertedBankAccount = returnedBankAccount;
     }
 
     @Test
@@ -146,7 +158,7 @@ class BankAccountResourceIT {
     @Test
     void getAllBankAccounts() throws Exception {
         // Initialize the database
-        bankAccountRepository.save(bankAccount);
+        insertedBankAccount = bankAccountRepository.save(bankAccount);
 
         // Get all the bankAccountList
         restBankAccountMockMvc
@@ -161,7 +173,7 @@ class BankAccountResourceIT {
     @Test
     void getBankAccount() throws Exception {
         // Initialize the database
-        bankAccountRepository.save(bankAccount);
+        insertedBankAccount = bankAccountRepository.save(bankAccount);
 
         // Get the bankAccount
         restBankAccountMockMvc
@@ -182,7 +194,7 @@ class BankAccountResourceIT {
     @Test
     void putExistingBankAccount() throws Exception {
         // Initialize the database
-        bankAccountRepository.save(bankAccount);
+        insertedBankAccount = bankAccountRepository.save(bankAccount);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -256,7 +268,7 @@ class BankAccountResourceIT {
     @Test
     void partialUpdateBankAccountWithPatch() throws Exception {
         // Initialize the database
-        bankAccountRepository.save(bankAccount);
+        insertedBankAccount = bankAccountRepository.save(bankAccount);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -264,7 +276,7 @@ class BankAccountResourceIT {
         BankAccount partialUpdatedBankAccount = new BankAccount();
         partialUpdatedBankAccount.setId(bankAccount.getId());
 
-        partialUpdatedBankAccount.balance(UPDATED_BALANCE);
+        partialUpdatedBankAccount.name(UPDATED_NAME).balance(UPDATED_BALANCE);
 
         restBankAccountMockMvc
             .perform(
@@ -286,7 +298,7 @@ class BankAccountResourceIT {
     @Test
     void fullUpdateBankAccountWithPatch() throws Exception {
         // Initialize the database
-        bankAccountRepository.save(bankAccount);
+        insertedBankAccount = bankAccountRepository.save(bankAccount);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -363,7 +375,7 @@ class BankAccountResourceIT {
     @Test
     void deleteBankAccount() throws Exception {
         // Initialize the database
-        bankAccountRepository.save(bankAccount);
+        insertedBankAccount = bankAccountRepository.save(bankAccount);
 
         long databaseSizeBeforeDelete = getRepositoryCount();
 
