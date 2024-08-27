@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 /**
  * Spring Data MongoDB repository for the Authority entity.
  */
-@SuppressWarnings("unused")
 @Repository
 public interface AuthorityRepository extends MongoRepository<Authority, String> {}

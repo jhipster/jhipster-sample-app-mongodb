@@ -1,21 +1,18 @@
 import { Routes } from '@angular/router';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
-import { BankAccountComponent } from './list/bank-account.component';
-import { BankAccountDetailComponent } from './detail/bank-account-detail.component';
-import { BankAccountUpdateComponent } from './update/bank-account-update.component';
 import BankAccountResolve from './route/bank-account-routing-resolve.service';
 
 const bankAccountRoute: Routes = [
   {
     path: '',
-    component: BankAccountComponent,
+    loadComponent: () => import('./list/bank-account.component').then(m => m.BankAccountComponent),
     data: {},
     canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
-    component: BankAccountDetailComponent,
+    loadComponent: () => import('./detail/bank-account-detail.component').then(m => m.BankAccountDetailComponent),
     resolve: {
       bankAccount: BankAccountResolve,
     },
@@ -23,7 +20,7 @@ const bankAccountRoute: Routes = [
   },
   {
     path: 'new',
-    component: BankAccountUpdateComponent,
+    loadComponent: () => import('./update/bank-account-update.component').then(m => m.BankAccountUpdateComponent),
     resolve: {
       bankAccount: BankAccountResolve,
     },
@@ -31,7 +28,7 @@ const bankAccountRoute: Routes = [
   },
   {
     path: ':id/edit',
-    component: BankAccountUpdateComponent,
+    loadComponent: () => import('./update/bank-account-update.component').then(m => m.BankAccountUpdateComponent),
     resolve: {
       bankAccount: BankAccountResolve,
     },

@@ -85,6 +85,8 @@ management:
       repository:
         autotime:
           enabled: true
+    tags:
+      application: ${spring.application.name}
 
 mongock:
   migration-scan-package:

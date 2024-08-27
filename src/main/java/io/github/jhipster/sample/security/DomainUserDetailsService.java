@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component("userDetailsService")
 public class DomainUserDetailsService implements UserDetailsService {
 
-    private static final Logger log = LoggerFactory.getLogger(DomainUserDetailsService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DomainUserDetailsService.class);
 
     private final UserRepository userRepository;
 
@@ -29,7 +29,7 @@ public class DomainUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String login) {
-        log.debug("Authenticating {}", login);
+        LOG.debug("Authenticating {}", login);
 
         if (new EmailValidator().isValid(login, null)) {
             return userRepository
