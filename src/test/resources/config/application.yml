@@ -25,6 +25,7 @@ mongock:
 spring:
   application:
     name: jhipsterMongodbSampleApplication
+  cloud:
   jackson:
     serialization:
       write-durations-as-timestamps: false
