@@ -44,7 +44,7 @@ describe('BankAccount Management Update Component', () => {
 
   describe('ngOnInit', () => {
     it('Should update editForm', () => {
-      const bankAccount: IBankAccount = { id: 'CBA' };
+      const bankAccount: IBankAccount = { id: '644e9fe4-7b80-43a2-9659-478b6ff178b1' };
 
       activatedRoute.data = of({ bankAccount });
       comp.ngOnInit();
@@ -57,7 +57,7 @@ describe('BankAccount Management Update Component', () => {
     it('Should call update service on save for existing entity', () => {
       // GIVEN
       const saveSubject = new Subject<HttpResponse<IBankAccount>>();
-      const bankAccount = { id: 'ABC' };
+      const bankAccount = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
       jest.spyOn(bankAccountFormService, 'getBankAccount').mockReturnValue(bankAccount);
       jest.spyOn(bankAccountService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
@@ -80,7 +80,7 @@ describe('BankAccount Management Update Component', () => {
     it('Should call create service on save for new entity', () => {
       // GIVEN
       const saveSubject = new Subject<HttpResponse<IBankAccount>>();
-      const bankAccount = { id: 'ABC' };
+      const bankAccount = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
       jest.spyOn(bankAccountFormService, 'getBankAccount').mockReturnValue({ id: null });
       jest.spyOn(bankAccountService, 'create').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
@@ -103,7 +103,7 @@ describe('BankAccount Management Update Component', () => {
     it('Should set isSaving to false on error', () => {
       // GIVEN
       const saveSubject = new Subject<HttpResponse<IBankAccount>>();
-      const bankAccount = { id: 'ABC' };
+      const bankAccount = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
       jest.spyOn(bankAccountService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
       activatedRoute.data = of({ bankAccount });

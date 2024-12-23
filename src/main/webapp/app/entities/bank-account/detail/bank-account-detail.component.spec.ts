@@ -18,7 +18,7 @@ describe('BankAccount Management Detail Component', () => {
             {
               path: '**',
               loadComponent: () => import('./bank-account-detail.component').then(m => m.BankAccountDetailComponent),
-              resolve: { bankAccount: () => of({ id: 'ABC' }) },
+              resolve: { bankAccount: () => of({ id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' }) },
             },
           ],
           withComponentInputBinding(),
@@ -40,7 +40,7 @@ describe('BankAccount Management Detail Component', () => {
       const instance = await harness.navigateByUrl('/', BankAccountDetailComponent);
 
       // THEN
-      expect(instance.bankAccount()).toEqual(expect.objectContaining({ id: 'ABC' }));
+      expect(instance.bankAccount()).toEqual(expect.objectContaining({ id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' }));
     });
   });
 
