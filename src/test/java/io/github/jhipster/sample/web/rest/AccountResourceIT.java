@@ -59,26 +59,20 @@ class AccountResourceIT {
     private MockMvc restAccountMockMvc;
 
     @AfterEach
-    public void cleanupAndCheck() {
+    void cleanupAndCheck() {
         userRepository.deleteAll();
     }
 
     @Test
     @WithUnauthenticatedMockUser
     void testNonAuthenticatedUser() throws Exception {
-        restAccountMockMvc
-            .perform(get("/api/authenticate").accept(MediaType.TEXT_PLAIN))
-            .andExpect(status().isOk())
-            .andExpect(content().string(""));
+        restAccountMockMvc.perform(get("/api/authenticate")).andExpect(status().isUnauthorized());
     }
 
     @Test
     @WithMockUser(TEST_USER_LOGIN)
     void testAuthenticatedUser() throws Exception {
-        restAccountMockMvc
-            .perform(get("/api/authenticate").with(request -> request).accept(MediaType.TEXT_PLAIN))
-            .andExpect(status().isOk())
-            .andExpect(content().string(TEST_USER_LOGIN));
+        restAccountMockMvc.perform(get("/api/authenticate").with(request -> request)).andExpect(status().isNoContent());
     }
 
     @Test

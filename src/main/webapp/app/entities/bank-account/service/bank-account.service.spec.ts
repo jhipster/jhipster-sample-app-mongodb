@@ -155,7 +155,7 @@ describe('BankAccount Service', () => {
     });
 
     describe('compareBankAccount', () => {
-      it('Should return true if both entities are null', () => {
+      it('should return true if both entities are null', () => {
         const entity1 = null;
         const entity2 = null;
 
@@ -164,7 +164,7 @@ describe('BankAccount Service', () => {
         expect(compareResult).toEqual(true);
       });
 
-      it('Should return false if one entity is null', () => {
+      it('should return false if one entity is null', () => {
         const entity1 = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
         const entity2 = null;
 
@@ -175,7 +175,7 @@ describe('BankAccount Service', () => {
         expect(compareResult2).toEqual(false);
       });
 
-      it('Should return false if primaryKey differs', () => {
+      it('should return false if primaryKey differs', () => {
         const entity1 = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
         const entity2 = { id: '644e9fe4-7b80-43a2-9659-478b6ff178b1' };
 
@@ -186,7 +186,7 @@ describe('BankAccount Service', () => {
         expect(compareResult2).toEqual(false);
       });
 
-      it('Should return false if primaryKey matches', () => {
+      it('should return false if primaryKey matches', () => {
         const entity1 = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
         const entity2 = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
 
