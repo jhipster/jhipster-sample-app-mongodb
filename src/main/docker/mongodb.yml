@@ -2,7 +2,7 @@
 name: jhipstermongodbsampleapplication
 services:
   mongodb:
-    image: mongo:8.0.6
+    image: mongo:8.0.9
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
