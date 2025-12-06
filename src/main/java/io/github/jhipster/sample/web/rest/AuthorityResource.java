@@ -28,7 +28,7 @@ public class AuthorityResource {
 
     private static final String ENTITY_NAME = "adminAuthority";
 
-    @Value("${jhipster.clientApp.name}")
+    @Value("${jhipster.clientApp.name:jhipsterMongodbSampleApplication}")
     private String applicationName;
 
     private final AuthorityRepository authorityRepository;

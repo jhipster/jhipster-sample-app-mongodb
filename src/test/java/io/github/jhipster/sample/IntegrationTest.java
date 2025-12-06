@@ -16,5 +16,4 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Retention(RetentionPolicy.RUNTIME)
 @SpringBootTest(classes = { JhipsterMongodbSampleApplicationApp.class, JacksonConfiguration.class, AsyncSyncConfiguration.class })
 @EmbeddedMongo
-public @interface IntegrationTest {
-}
+public @interface IntegrationTest {}

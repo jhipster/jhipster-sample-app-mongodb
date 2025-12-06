@@ -1,6 +1,7 @@
 package io.github.jhipster.sample.domain;
 
 import jakarta.validation.constraints.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 import org.springframework.data.annotation.Id;
@@ -13,6 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Authority implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @NotNull

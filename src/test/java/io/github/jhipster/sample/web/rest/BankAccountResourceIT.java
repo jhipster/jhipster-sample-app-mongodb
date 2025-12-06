@@ -274,7 +274,7 @@ class BankAccountResourceIT {
         BankAccount partialUpdatedBankAccount = new BankAccount();
         partialUpdatedBankAccount.setId(bankAccount.getId());
 
-        partialUpdatedBankAccount.name(UPDATED_NAME).balance(UPDATED_BALANCE);
+        partialUpdatedBankAccount.balance(UPDATED_BALANCE);
 
         restBankAccountMockMvc
             .perform(
