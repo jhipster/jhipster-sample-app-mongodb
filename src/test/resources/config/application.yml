@@ -25,7 +25,7 @@ mongock:
 spring:
   application:
     name: jhipsterMongodbSampleApplication
-  jackson:
+  jackson2:
     serialization:
       write-durations-as-timestamps: false
   mail:
@@ -34,6 +34,9 @@ spring:
     allow-bean-definition-overriding: true
   messages:
     basename: i18n/messages
+  mongodb:
+    representation:
+      uuid: standard
   security:
     oauth2:
       resourceserver:

@@ -27,12 +27,9 @@ spring:
       additional-exclude: static/**
     livereload:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
-  jackson:
+  jackson2:
     serialization:
       indent-output: true
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/jhipsterMongodbSampleApplication
   mail:
     host: localhost
     port: 25
@@ -40,6 +37,8 @@ spring:
     password:
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
+  mongodb:
+    uri: mongodb://localhost:27017/jhipsterMongodbSampleApplication
   thymeleaf:
     cache: false
 

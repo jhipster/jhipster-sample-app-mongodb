@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Consumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -121,12 +122,8 @@ public class BankAccountResource {
         Optional<BankAccount> result = bankAccountRepository
             .findById(bankAccount.getId())
             .map(existingBankAccount -> {
-                if (bankAccount.getName() != null) {
-                    existingBankAccount.setName(bankAccount.getName());
-                }
-                if (bankAccount.getBalance() != null) {
-                    existingBankAccount.setBalance(bankAccount.getBalance());
-                }
+                updateIfPresent(existingBankAccount::setName, bankAccount.getName());
+                updateIfPresent(existingBankAccount::setBalance, bankAccount.getBalance());
 
                 return existingBankAccount;
             })
@@ -173,5 +170,11 @@ public class BankAccountResource {
         LOG.debug("REST request to delete BankAccount : {}", id);
         bankAccountRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build();
+    }
+
+    private <T> void updateIfPresent(Consumer<T> setter, T value) {
+        if (value != null) {
+            setter.accept(value);
+        }
     }
 }

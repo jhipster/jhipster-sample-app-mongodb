@@ -107,7 +107,6 @@ spring:
     active: '@spring.profiles.active@'
     group:
       dev:
-        - dev
         - api-docs
         # Uncomment to activate TLS for the dev profile
         #- tls
@@ -120,6 +119,9 @@ spring:
   mvc:
     problemdetails:
       enabled: true
+  mongodb:
+    representation:
+      uuid: standard
   security:
     oauth2:
       resourceserver:

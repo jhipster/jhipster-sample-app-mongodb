@@ -3,7 +3,7 @@ package io.github.jhipster.sample.config;
 import io.mongock.runner.springboot.EnableMongock;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.boot.mongodb.autoconfigure.MongoAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;

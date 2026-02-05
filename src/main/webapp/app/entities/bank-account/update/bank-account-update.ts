@@ -1,12 +1,16 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
-import SharedModule from 'app/shared/shared.module';
+import { AlertError } from 'app/shared/alert/alert-error';
+import { TranslateDirective } from 'app/shared/language';
 import { IBankAccount } from '../bank-account.model';
 import { BankAccountService } from '../service/bank-account.service';
 
@@ -15,10 +19,10 @@ import { BankAccountFormGroup, BankAccountFormService } from './bank-account-for
 @Component({
   selector: 'jhi-bank-account-update',
   templateUrl: './bank-account-update.html',
-  imports: [SharedModule, ReactiveFormsModule],
+  imports: [TranslateDirective, TranslateModule, NgbModule, FontAwesomeModule, AlertError, ReactiveFormsModule],
 })
 export class BankAccountUpdate implements OnInit {
-  isSaving = false;
+  isSaving = signal(false);
   bankAccount: IBankAccount | null = null;
 
   protected bankAccountService = inject(BankAccountService);
@@ -42,7 +46,7 @@ export class BankAccountUpdate implements OnInit {
   }
 
   save(): void {
-    this.isSaving = true;
+    this.isSaving.set(true);
     const bankAccount = this.bankAccountFormService.getBankAccount(this.editForm);
     if (bankAccount.id === null) {
       this.subscribeToSaveResponse(this.bankAccountService.create(bankAccount));
@@ -67,7 +71,7 @@ export class BankAccountUpdate implements OnInit {
   }
 
   protected onSaveFinalize(): void {
-    this.isSaving = false;
+    this.isSaving.set(false);
   }
 
   protected updateForm(bankAccount: IBankAccount): void {
