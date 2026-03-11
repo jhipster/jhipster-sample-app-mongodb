@@ -9,7 +9,7 @@ import org.testcontainers.mongodb.MongoDBContainer;
 
 public interface MongoDbTestContainer {
     @Container
-    MongoDBContainer mongoDbContainer = new MongoDBContainer("mongo:8.2.4").withLogConsumer(
+    MongoDBContainer mongoDbContainer = new MongoDBContainer("mongo:8.2.5").withLogConsumer(
         new Slf4jLogConsumer(LoggerFactory.getLogger(MongoDbTestContainer.class))
     );
 

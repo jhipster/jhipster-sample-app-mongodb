@@ -1,5 +1,4 @@
 import { beforeEach, describe, expect, it, vitest } from 'vitest';
-import { HttpResponse } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
@@ -56,7 +55,7 @@ describe('BankAccount Management Update Component', () => {
   describe('save', () => {
     it('should call update service on save for existing entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IBankAccount>>();
+      const saveSubject = new Subject<IBankAccount>();
       const bankAccount = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
       vitest.spyOn(bankAccountFormService, 'getBankAccount').mockReturnValue(bankAccount);
       vitest.spyOn(bankAccountService, 'update').mockReturnValue(saveSubject);
@@ -67,7 +66,7 @@ describe('BankAccount Management Update Component', () => {
       // WHEN
       comp.save();
       expect(comp.isSaving()).toEqual(true);
-      saveSubject.next(new HttpResponse({ body: bankAccount }));
+      saveSubject.next(bankAccount);
       saveSubject.complete();
 
       // THEN
@@ -79,7 +78,7 @@ describe('BankAccount Management Update Component', () => {
 
     it('should call create service on save for new entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IBankAccount>>();
+      const saveSubject = new Subject<IBankAccount>();
       const bankAccount = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
       vitest.spyOn(bankAccountFormService, 'getBankAccount').mockReturnValue({ id: null });
       vitest.spyOn(bankAccountService, 'create').mockReturnValue(saveSubject);
@@ -90,7 +89,7 @@ describe('BankAccount Management Update Component', () => {
       // WHEN
       comp.save();
       expect(comp.isSaving()).toEqual(true);
-      saveSubject.next(new HttpResponse({ body: bankAccount }));
+      saveSubject.next(bankAccount);
       saveSubject.complete();
 
       // THEN
@@ -102,7 +101,7 @@ describe('BankAccount Management Update Component', () => {
 
     it('should set isSaving to false on error', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IBankAccount>>();
+      const saveSubject = new Subject<IBankAccount>();
       const bankAccount = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
       vitest.spyOn(bankAccountService, 'update').mockReturnValue(saveSubject);
       vitest.spyOn(comp, 'previousState');
