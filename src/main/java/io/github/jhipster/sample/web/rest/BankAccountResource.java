@@ -169,7 +169,9 @@ public class BankAccountResource {
     public ResponseEntity<Void> deleteBankAccount(@PathVariable("id") String id) {
         LOG.debug("REST request to delete BankAccount : {}", id);
         bankAccountRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build();
+        return ResponseEntity.noContent()
+            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id))
+            .build();
     }
 
     private <T> void updateIfPresent(Consumer<T> setter, T value) {
