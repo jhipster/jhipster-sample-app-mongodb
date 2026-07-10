@@ -90,7 +90,7 @@ describe('BankAccount Service', () => {
       service.delete('ABC').subscribe();
 
       const requests = httpMock.match({ method: 'DELETE' });
-      expect(requests.length).toBe(1);
+      expect(requests).toHaveLength(1);
     });
 
     describe('addBankAccountToCollectionIfMissing', () => {

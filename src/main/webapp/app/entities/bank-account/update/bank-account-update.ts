@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Observable, finalize } from 'rxjs';
 
 import { AlertError } from 'app/shared/alert/alert-error';
@@ -17,7 +17,7 @@ import { BankAccountFormGroup, BankAccountFormService } from './bank-account-for
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'jhi-bank-account-update',
   templateUrl: './bank-account-update.html',
-  imports: [TranslateDirective, TranslateModule, FontAwesomeModule, AlertError, ReactiveFormsModule],
+  imports: [TranslateDirective, TranslatePipe, FontAwesomeModule, AlertError, ReactiveFormsModule],
 })
 export class BankAccountUpdate implements OnInit {
   readonly isSaving = signal(false);
