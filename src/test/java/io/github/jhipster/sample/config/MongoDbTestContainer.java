@@ -1,20 +1,22 @@
 package io.github.jhipster.sample.config;
 
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.context.annotation.Bean;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
-import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.mongodb.MongoDBContainer;
 
-public interface MongoDbTestContainer {
-    @Container
-    MongoDBContainer mongoDbContainer = new MongoDBContainer("mongo:8.2.11").withLogConsumer(
+@TestConfiguration(proxyBeanMethods = false)
+public class MongoDbTestContainer {
+
+    private static final MongoDBContainer MONGO_DB_CONTAINER = new MongoDBContainer("mongo:8.2.12").withLogConsumer(
         new Slf4jLogConsumer(LoggerFactory.getLogger(MongoDbTestContainer.class))
     );
 
-    @DynamicPropertySource
-    static void registerProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.mongodb.uri", mongoDbContainer::getReplicaSetUrl);
+    @Bean
+    @ServiceConnection
+    MongoDBContainer mongoDbContainer() {
+        return MONGO_DB_CONTAINER;
     }
 }

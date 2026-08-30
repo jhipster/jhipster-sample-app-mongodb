@@ -14,9 +14,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
     Optional<User> findOneByActivationKey(String activationKey);
+
     List<User> findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(Instant dateTime);
+
     Optional<User> findOneByResetKey(String resetKey);
+
     Optional<User> findOneByEmailIgnoreCase(String email);
+
     Optional<User> findOneByLogin(String login);
 
     Page<User> findAllByIdNotNullAndActivatedIsTrue(Pageable pageable);

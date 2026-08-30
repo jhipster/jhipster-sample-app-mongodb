@@ -27,7 +27,7 @@ spring:
       additional-exclude: static/**
     livereload:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
-  jackson2:
+  jackson:
     serialization:
       indent-output: true
   mail:

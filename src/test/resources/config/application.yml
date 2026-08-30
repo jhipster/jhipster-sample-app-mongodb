@@ -25,9 +25,10 @@ mongock:
 spring:
   application:
     name: jhipsterMongodbSampleApplication
-  jackson2:
-    serialization:
-      write-durations-as-timestamps: false
+  jackson:
+    datatype:
+      datetime:
+        write-durations-as-timestamps: false
   mail:
     host: localhost
   main:

@@ -3,10 +3,8 @@ package io.github.jhipster.sample.config;
 import io.mongock.runner.springboot.EnableMongock;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.boot.mongodb.autoconfigure.MongoAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
@@ -22,7 +20,6 @@ import tech.jhipster.domain.util.JSR310DateConverters.ZonedDateTimeToDateConvert
 @EnableMongock
 @EnableMongoRepositories("io.github.jhipster.sample.repository")
 @Profile("!" + JHipsterConstants.SPRING_PROFILE_CLOUD)
-@Import(value = MongoAutoConfiguration.class)
 @EnableMongoAuditing(auditorAwareRef = "springSecurityAuditorAware")
 public class DatabaseConfiguration {
 

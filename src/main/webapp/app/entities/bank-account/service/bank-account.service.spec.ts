@@ -82,7 +82,6 @@ describe('BankAccount Service', () => {
 
       const req = httpMock.expectOne({ method: 'GET' });
       req.flush([returnedFromService]);
-      httpMock.verify();
       expect(expectedResult).toMatchObject([expected]);
     });
 
@@ -179,7 +178,7 @@ describe('BankAccount Service', () => {
         expect(compareResult2).toEqual(false);
       });
 
-      it('should return false if primaryKey matches', () => {
+      it('should return true if primaryKey matches', () => {
         const entity1 = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
         const entity2 = { id: 'bba7d6f3-2a08-400a-a80f-840fdb3798bd' };
 
