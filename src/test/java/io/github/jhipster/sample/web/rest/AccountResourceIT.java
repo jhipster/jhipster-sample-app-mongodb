@@ -20,6 +20,7 @@ import java.util.*;
 import java.util.stream.Stream;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -58,9 +59,17 @@ class AccountResourceIT {
     @Autowired
     private MockMvc restAccountMockMvc;
 
+    private Long numberOfUsers;
+
+    @BeforeEach
+    void countUsers() {
+        numberOfUsers = userRepository.count();
+    }
+
     @AfterEach
-    void cleanupAndCheck() {
-        userRepository.deleteAll();
+    void checkUsers() {
+        assertThat(userRepository.count()).isEqualTo(numberOfUsers);
+        numberOfUsers = null;
     }
 
     @Test

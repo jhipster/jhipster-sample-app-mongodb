@@ -1,5 +1,6 @@
 package io.github.jhipster.sample.web.rest;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -7,6 +8,7 @@ import io.github.jhipster.sample.IntegrationTest;
 import io.github.jhipster.sample.domain.User;
 import io.github.jhipster.sample.repository.UserRepository;
 import io.github.jhipster.sample.security.AuthoritiesConstants;
+import io.github.jhipster.sample.service.UserService;
 import java.util.Set;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,18 +31,25 @@ class PublicUserResourceIT {
     private UserRepository userRepository;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private MockMvc restUserMockMvc;
 
     private User user;
+    private Long numberOfUsers;
 
     @BeforeEach
     void initTest() {
+        numberOfUsers = userRepository.count();
         user = UserResourceIT.initTestUser();
     }
 
     @AfterEach
     void cleanupAndCheck() {
-        userRepository.deleteAll();
+        userService.deleteUser(user.getLogin());
+        assertThat(userRepository.count()).isEqualTo(numberOfUsers);
+        numberOfUsers = null;
     }
 
     @Test
